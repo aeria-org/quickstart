@@ -29,5 +29,14 @@ export const pizza = defineCollection({
     insert,
     remove,
   },
+  accessControl: {
+    roles: {
+      root: {
+        grant: [
+          'get'
+        ]
+      }
+    }
+  },
 })
 
