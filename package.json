@@ -4,8 +4,6 @@
   "description": "",
   "scripts": {
     "postinstall": "git init && husky && node scripts/postinstall.js",
-    "lint": "eslint api",
-    "lint:fix": "eslint api --fix",
     "dev": "dualist api web"
   },
   "keywords": [],

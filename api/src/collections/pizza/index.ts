@@ -1,4 +1,4 @@
-import { defineCollection, get, getAll, insert, remove } from 'aeria'
+import { defineCollection, get, getAll, insert, remove, count } from 'aeria'
 
 export const pizza = defineCollection({
   description: {
@@ -28,15 +28,14 @@ export const pizza = defineCollection({
     getAll,
     insert,
     remove,
+    count,
   },
   accessControl: {
     roles: {
       root: {
-        grant: [
-          'get'
-        ]
-      }
-    }
+        grant: ['get'],
+      },
+    },
   },
 })
 
