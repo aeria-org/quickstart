@@ -584,12 +584,17 @@ declare type MirrorRouter = {
       ]
     }
   },
-  "/pizza/banana": {
-    "GET": {
-      "response": {
-        "literal": "banana"
-      }
-    }
+  "/pizza/getAll": {
+    "POST": null
+  },
+  "/pizza/insert": {
+    "POST": null
+  },
+  "/pizza/remove": {
+    "POST": null
+  },
+  "/pizza/count": {
+    "POST": null
   },
   "/pizza/topRatedPizzas": {
     "GET": null
