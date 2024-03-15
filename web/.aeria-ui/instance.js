@@ -5,7 +5,7 @@ import vueRouter from 'unplugin-vue-router/vite'
 export default {
   site: {
     title: 'Quickstart',
-    signinText: 'Área restrita',
+    signinText: 'Admin panel',
     signupForm: true,
   },
   icons: {
@@ -13,6 +13,10 @@ export default {
       '@aeria-ui/ui',
       'aeria-app-layout',
     ],
+    safeList: [
+      'moon',
+      'sun',
+    ]
   },
   vite: {
     resolve: {
