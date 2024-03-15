@@ -6,12 +6,10 @@ export const user = extendCollection(originalUser, {
       roles: {
         type: 'array',
         items: {
-          enum: [
-            'manager'
-          ]
-        }
-      }
-    }
-  }
+          enum: ['manager'],
+        },
+      },
+    },
+  },
 })
 
