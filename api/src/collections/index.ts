@@ -1,7 +1,7 @@
 export * from './pizza/index.js'
+export * from './user/index.js'
 
 export {
-  user,
   file,
   tempFile,
   log,
