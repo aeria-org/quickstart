@@ -8,6 +8,7 @@
     "dev": "aeria-ui -m serve",
     "lint": "eslint src",
     "lint:fix": "eslint src --fix",
+    "build:ci": "vue-tsc --noEmit && aeria-ui -m build",
     "build": "vue-tsc --noEmit && aeria-ui -m build"
   },
   "keywords": [],
