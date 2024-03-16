@@ -1,6 +1,11 @@
 import { init } from 'aeria'
 import { router } from './routes/index.js'
-export * as collections from './collections/index.js'
+import * as collections from './collections/index.js'
+
+export {
+  collections,
+  router,
+}
 
 export default init({
   config: {
