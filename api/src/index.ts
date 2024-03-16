@@ -10,7 +10,7 @@ export {
 
 export default init({
   config,
-  callback: async (context) => {
+  callback: (context) => {
     return router.install(context)
   },
 })
