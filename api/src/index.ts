@@ -1,9 +1,6 @@
-import { init, createRouter } from 'aeria'
-import { pizzaRoutes } from './routes/index.js'
+import { init } from 'aeria'
+import { router } from './routes/index.js'
 export * as collections from './collections/index.js'
-
-export const router = createRouter()
-router.group('/pizza', pizzaRoutes)
 
 export default init({
   config: {

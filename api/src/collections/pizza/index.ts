@@ -9,9 +9,6 @@ export const pizza = defineCollection({
       name: {
         type: 'string',
       },
-      flavor: {
-        literal: 'cheese',
-      },
       price: {
         type: 'number',
       },

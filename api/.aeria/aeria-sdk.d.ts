@@ -9,177 +9,6 @@ import type {
 } from '@aeriajs/types'
 
 declare type MirrorDescriptions = {
-  "user": {
-    "$id": "user",
-    "required": [
-      "name",
-      "roles",
-      "email"
-    ],
-    "form": [
-      "name",
-      "active",
-      "roles",
-      "email",
-      "phone_number",
-      "picture_file"
-    ],
-    "indexes": [
-      "name"
-    ],
-    "freshItem": {
-      "active": true
-    },
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "given_name": {
-        "readOnly": true
-      },
-      "family_name": {
-        "readOnly": true
-      },
-      "active": {
-        "type": "boolean"
-      },
-      "roles": {
-        "type": "array",
-        "items": {
-          "type": "string"
-        },
-        "uniqueItems": true
-      },
-      "email": {
-        "type": "string",
-        "inputType": "email",
-        "unique": true
-      },
-      "password": {
-        "type": "string",
-        "inputType": "password",
-        "hidden": true
-      },
-      "phone_number": {
-        "type": "string",
-        "mask": "(##) #####-####"
-      },
-      "picture_file": {
-        "$ref": "file",
-        "accept": [
-          "image/*"
-        ],
-        "indexes": [
-          "filename",
-          "link",
-          "mime"
-        ]
-      },
-      "picture": {
-        "readOnly": true
-      },
-      "group": {
-        "type": "string"
-      },
-      "self_registered": {
-        "type": "boolean",
-        "readOnly": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "presets": [
-      "crud",
-      "view",
-      "duplicate"
-    ],
-    "layout": {
-      "name": "grid",
-      "options": {
-        "title": "name",
-        "badge": "roles",
-        "picture": "picture_file",
-        "information": "email",
-        "active": "active",
-        "translateBadge": true
-      }
-    },
-    "individualActions": {
-      "ui:spawnEdit": {
-        "name": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/user/changepass": {
-        "name": "Mudar senha",
-        "icon": "key",
-        "fetchItem": true
-      },
-      "remove": {
-        "name": "action.remove",
-        "icon": "trash",
-        "ask": true,
-        "translate": true
-      },
-      "ui:spawnView": {
-        "name": "action.view",
-        "icon": "magnifying-glass-plus",
-        "translate": true
-      },
-      "ui:duplicate": {
-        "name": "action.duplicate",
-        "icon": "copy",
-        "translate": true
-      }
-    },
-    "icon": "users",
-    "filters": [
-      "name",
-      "roles",
-      "email",
-      "phone_number"
-    ],
-    "table": [
-      "name",
-      "roles",
-      "picture_file",
-      "active",
-      "updated_at"
-    ],
-    "tableMeta": [
-      "email"
-    ],
-    "formLayout": {
-      "fields": {
-        "given_name": {
-          "span": 3
-        },
-        "family_name": {
-          "span": 3
-        }
-      }
-    },
-    "actions": {
-      "ui:spawnAdd": {
-        "name": "action.add",
-        "icon": "plus",
-        "translate": true,
-        "button": true
-      }
-    }
-  },
   "file": {
     "$id": "file",
     "owned": "always",
@@ -388,9 +217,6 @@ declare type MirrorDescriptions = {
       "name": {
         "type": "string"
       },
-      "flavor": {
-        "literal": "cheese"
-      },
       "price": {
         "type": "number"
       },
@@ -438,11 +264,260 @@ declare type MirrorDescriptions = {
         "translate": true
       }
     }
+  },
+  "user": {
+    "$id": "user",
+    "required": [
+      "name",
+      "roles",
+      "email"
+    ],
+    "form": [
+      "name",
+      "active",
+      "roles",
+      "email",
+      "phone_number",
+      "picture_file"
+    ],
+    "indexes": [
+      "name"
+    ],
+    "freshItem": {
+      "active": true
+    },
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "given_name": {
+        "readOnly": true
+      },
+      "family_name": {
+        "readOnly": true
+      },
+      "active": {
+        "type": "boolean"
+      },
+      "roles": {
+        "type": "array",
+        "items": {
+          "type": "string",
+          "enum": [
+            "manager"
+          ]
+        },
+        "uniqueItems": true
+      },
+      "email": {
+        "type": "string",
+        "inputType": "email",
+        "unique": true
+      },
+      "password": {
+        "type": "string",
+        "inputType": "password",
+        "hidden": true
+      },
+      "phone_number": {
+        "type": "string",
+        "mask": "(##) #####-####"
+      },
+      "picture_file": {
+        "$ref": "file",
+        "accept": [
+          "image/*"
+        ],
+        "indexes": [
+          "filename",
+          "link",
+          "mime"
+        ]
+      },
+      "picture": {
+        "readOnly": true
+      },
+      "group": {
+        "type": "string"
+      },
+      "self_registered": {
+        "type": "boolean",
+        "readOnly": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "presets": [
+      "crud",
+      "view",
+      "duplicate"
+    ],
+    "layout": {
+      "name": "grid",
+      "options": {
+        "title": "name",
+        "badge": "roles",
+        "picture": "picture_file",
+        "information": "email",
+        "active": "active",
+        "translateBadge": true
+      }
+    },
+    "individualActions": {
+      "ui:spawnEdit": {
+        "name": "action.edit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "route:/dashboard/user/changepass": {
+        "name": "Mudar senha",
+        "icon": "key",
+        "fetchItem": true
+      },
+      "remove": {
+        "name": "action.remove",
+        "icon": "trash",
+        "ask": true,
+        "translate": true
+      },
+      "ui:spawnView": {
+        "name": "action.view",
+        "icon": "magnifying-glass-plus",
+        "translate": true
+      },
+      "ui:duplicate": {
+        "name": "action.duplicate",
+        "icon": "copy",
+        "translate": true
+      }
+    },
+    "icon": "users",
+    "filters": [
+      "name",
+      "roles",
+      "email",
+      "phone_number"
+    ],
+    "table": [
+      "name",
+      "roles",
+      "picture_file",
+      "active",
+      "updated_at"
+    ],
+    "tableMeta": [
+      "email"
+    ],
+    "formLayout": {
+      "fields": {
+        "given_name": {
+          "span": 3
+        },
+        "family_name": {
+          "span": 3
+        }
+      }
+    },
+    "actions": {
+      "ui:spawnAdd": {
+        "name": "action.add",
+        "icon": "plus",
+        "translate": true,
+        "button": true
+      }
+    }
   }
 }
 
 
 declare type MirrorRouter = {
+  "/file/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/file/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/file/download": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/file/remove": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/file/removeAll": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/log/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/log/getAll": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/log/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/pizza/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
+  },
+  "/pizza/getAll": {
+    "POST": null
+  },
+  "/pizza/insert": {
+    "POST": null
+  },
+  "/pizza/remove": {
+    "POST": null
+  },
+  "/pizza/count": {
+    "POST": null
+  },
   "/user/get": {
     "POST": {
       "roles": [
@@ -520,84 +595,6 @@ declare type MirrorRouter = {
         "root"
       ]
     }
-  },
-  "/file/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/file/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/file/download": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/file/remove": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/file/removeAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/log/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/log/getAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/log/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/pizza/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ]
-    }
-  },
-  "/pizza/getAll": {
-    "POST": null
-  },
-  "/pizza/insert": {
-    "POST": null
-  },
-  "/pizza/remove": {
-    "POST": null
-  },
-  "/pizza/count": {
-    "POST": null
-  },
-  "/pizza/topRatedPizzas": {
-    "GET": null
   }
 }
 
