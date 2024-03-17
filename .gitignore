@@ -1,5 +1,6 @@
+.env
+production.env
 dist
 node_modules
-api/.env
-api/production.env
 api/release
+
