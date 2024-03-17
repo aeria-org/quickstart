@@ -15,7 +15,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@aeria-ui/i18n-ptbr": "latest",
+    "@aeria-ui/i18n-en": "latest",
     "aeria-app-layout": "latest",
     "aeria-ui": "latest"
   },

@@ -9,9 +9,9 @@
     "lint:fix": "eslint . --fix",
     "build": "aeria -c",
     "build:icons": "aeria -i",
-    "build:post": "aeria -mi",
+    "build:post": "aeria -mik",
     "dev": "aeria -w",
-    "start": "node -r aeria/loader ./release/index.js"
+    "start": "node -r aeria/loader ./dist/index.js"
   },
   "aeriaSdk": {
     "apiUrl": {
@@ -26,7 +26,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "latest"
+    "aeria": "latest",
+    "aeria-sdk": "latest"
   },
   "devDependencies": {
     "aeria-build": "latest"

@@ -4,7 +4,6 @@ export const pizza = defineCollection({
   description: {
     $id: 'pizza',
     icon: 'pizza',
-    required: ['name'],
     properties: {
       name: {
         type: 'string',
@@ -16,6 +15,7 @@ export const pizza = defineCollection({
         type: 'integer',
         minimum: 1,
         maximum: 5,
+        hint: 'Insert a number from 1 to 5',
       },
     },
     presets: ['crud'],

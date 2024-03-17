@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "postinstall": "git init && husky && node scripts/postinstall.js",
+    "postinstall": "husky && node scripts/postinstall.js && cp package-lock.json api && cp package-lock.json web",
     "dev": "dualist api web"
   },
   "keywords": [],

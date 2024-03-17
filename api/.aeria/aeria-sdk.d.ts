@@ -210,9 +210,6 @@ declare type MirrorDescriptions = {
   "pizza": {
     "$id": "pizza",
     "icon": "pizza",
-    "required": [
-      "name"
-    ],
     "properties": {
       "name": {
         "type": "string"
@@ -223,7 +220,8 @@ declare type MirrorDescriptions = {
       "rating": {
         "type": "integer",
         "minimum": 1,
-        "maximum": 5
+        "maximum": 5,
+        "hint": "Insert a number from 1 to 5"
       },
       "created_at": {
         "type": "string",
@@ -382,8 +380,9 @@ declare type MirrorDescriptions = {
         "translate": true
       },
       "route:/dashboard/user/changepass": {
-        "name": "Mudar senha",
+        "name": "change_password",
         "icon": "key",
+        "translate": true,
         "fetchItem": true
       },
       "remove": {
@@ -507,16 +506,32 @@ declare type MirrorRouter = {
     }
   },
   "/pizza/getAll": {
-    "POST": null
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
   },
   "/pizza/insert": {
-    "POST": null
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
   },
   "/pizza/remove": {
-    "POST": null
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
   },
   "/pizza/count": {
-    "POST": null
+    "POST": {
+      "roles": [
+        "root"
+      ]
+    }
   },
   "/user/get": {
     "POST": {
@@ -595,6 +610,9 @@ declare type MirrorRouter = {
         "root"
       ]
     }
+  },
+  "/pizza/topRatedPizzas": {
+    "GET": null
   }
 }
 

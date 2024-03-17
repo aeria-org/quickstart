@@ -1,6 +1,6 @@
 import { useApp, defineOptions, AeriaMain } from 'aeria-ui'
-import waltzPtbr from '@aeria-ui/i18n-ptbr'
-import { ptbr } from './i18n/index.js'
+import aeriaEn from '@aeria-ui/i18n-en'
+import { en } from './i18n/index.js'
 import { routes } from './routes.js'
 
 import '@aeria-ui/ui/style.css'
@@ -8,15 +8,17 @@ import 'aeria-app-layout/style.css'
 import './style/main.css'
 import './style/main.less'
 
+import NoResults from './components/no-results.vue'
+
 const options = defineOptions({
   component: AeriaMain,
   routes,
   i18n: {
-    current: 'pt_BR',
+    current: 'en',
     locales: {
-      pt_BR: [
-        waltzPtbr,
-        ptbr,
+      en: [
+        aeriaEn,
+        en,
       ],
     },
   },
@@ -27,7 +29,8 @@ const options = defineOptions({
   ],
 })
 
-useApp(options).then((app) => {
-  app.mount()
+useApp(options).then(({ app, mount }) => {
+  app.provide('noResultsComponent', NoResults)
+  mount()
 })
 
