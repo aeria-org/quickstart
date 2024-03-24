@@ -31,13 +31,17 @@ const moveFolder = async (workspace, origin) => {
 }
 
 /**
- * @param {string} workspace
+ * @param {string | null} workspace
  * @param {string[]} dependencies
 */
 const updateDependency = async (workspace, dependencies) => {
-  const proc = spawn('npm', ['install'].concat(dependencies), {
-    cwd: workspace
-  })
+  const proc = spawn(
+    'npm',
+    ['install'].concat(dependencies),
+    workspace
+      ? { cwd: workspace }
+      : {}
+  )
 
   proc.stdout.pipe(process.stdout)
   proc.stderr.pipe(process.stderr)
@@ -56,17 +60,25 @@ const main = async () => {
   await moveFolder('api', '.aeria')
   await moveFolder('web', '.aeria-ui')
 
+  console.log('[info] updating dependencies...')
+
+  await updateDependency(null, [
+    'dualist',
+    'eslint-config-aeria',
+  ])
+
   await updateDependency('api', [
     'aeria',
     'aeria-build',
-    'aeria-sdk'
+    'aeria-sdk',
   ])
 
   await updateDependency('web', [
+    '@aeria-ui/i18n-en',
+    'aeria-app-layout',
     'aeria-ui',
     'aeria-ui-build',
-    'aeria-app-layout',
-    '@aeria-ui/i18n-en'
+    'eslint-config-aeriaui',
   ])
 }
 
