@@ -60,8 +60,6 @@ const main = async () => {
   await moveFolder('api', '.aeria')
   await moveFolder('web', '.aeria-ui')
 
-  console.log('[info] updating dependencies...')
-
   await updateDependency(null, [
     'dualist',
     'eslint-config-aeria',
