@@ -37,7 +37,7 @@ const moveFolder = async (workspace, origin) => {
 const updateDependency = async (workspace, dependencies) => {
   const proc = spawn(
     'npm',
-    ['install'].concat(dependencies),
+    ['install'].concat(dependencies.map((dep) => `${dep}@latest`)),
     workspace
       ? { cwd: workspace }
       : {}
