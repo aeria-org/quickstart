@@ -1,12 +1,13 @@
 // @ts-check
 const fs = require('fs')
 const path = require('path')
+const { spawn } = require('child_process')
 
 /**
- * @param {string} origin
  * @param {string} workspace
+ * @param {string} origin
 */
-const moveFolder = async (origin, workspace) => {
+const moveFolder = async (workspace, origin) => {
   const target = path.join(workspace, origin)
 
   if( fs.existsSync(origin) ) {
@@ -29,9 +30,44 @@ const moveFolder = async (origin, workspace) => {
   }
 }
 
+/**
+ * @param {string} workspace
+ * @param {string[]} dependencies
+*/
+const updateDependency = async (workspace, dependencies) => {
+  const proc = spawn('npm', ['install'].concat(dependencies), {
+    cwd: workspace
+  })
+
+  proc.stdout.pipe(process.stdout)
+  proc.stderr.pipe(process.stderr)
+
+  /** @type Promise<void> */
+  const promise = new Promise((resolve) => {
+    proc.on('close', () => {
+      resolve()
+    })
+  })
+
+  await promise
+}
+
 const main = async () => {
-  await moveFolder('.aeria', 'api')
-  await moveFolder('.aeria-ui', 'web')
+  await moveFolder('api', '.aeria')
+  await moveFolder('web', '.aeria-ui')
+
+  await updateDependency('api', [
+    'aeria',
+    'aeria-build',
+    'aeria-sdk'
+  ])
+
+  await updateDependency('web', [
+    'aeria-ui',
+    'aeria-ui-build',
+    'aeria-app-layout',
+    '@aeria-ui/i18n-en'
+  ])
 }
 
 main()

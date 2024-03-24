@@ -86,44 +86,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "tempFile": {
-    "$id": "tempFile",
-    "temporary": {
-      "index": "created_at",
-      "expireAfterSeconds": 3600
-    },
-    "properties": {
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "absolute_path": {
-        "type": "string"
-      },
-      "size": {
-        "type": "number"
-      },
-      "mime": {
-        "type": "number"
-      },
-      "collection": {
-        "type": "string"
-      },
-      "filename": {
-        "type": "string"
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    }
-  },
   "log": {
     "$id": "log",
     "required": [
@@ -180,33 +142,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "resourceUsage": {
-    "$id": "resourceUsage",
-    "required": [],
-    "properties": {
-      "hits": {
-        "type": "integer"
-      },
-      "last_maximum_reach": {
-        "type": "string",
-        "format": "date-time"
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    }
-  },
   "pizza": {
     "$id": "pizza",
     "icon": "pizza",
@@ -260,6 +195,71 @@ declare type MirrorDescriptions = {
         "icon": "trash",
         "ask": true,
         "translate": true
+      }
+    }
+  },
+  "resourceUsage": {
+    "$id": "resourceUsage",
+    "required": [],
+    "properties": {
+      "hits": {
+        "type": "integer"
+      },
+      "last_maximum_reach": {
+        "type": "string",
+        "format": "date-time"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    }
+  },
+  "tempFile": {
+    "$id": "tempFile",
+    "temporary": {
+      "index": "created_at",
+      "expireAfterSeconds": 3600
+    },
+    "properties": {
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "absolute_path": {
+        "type": "string"
+      },
+      "size": {
+        "type": "number"
+      },
+      "mime": {
+        "type": "number"
+      },
+      "collection": {
+        "type": "string"
+      },
+      "filename": {
+        "type": "string"
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
       }
     }
   },

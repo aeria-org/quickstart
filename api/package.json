@@ -1,5 +1,6 @@
 {
   "name": "api",
+  "type": "module",
   "version": "1.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -26,10 +27,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "latest",
-    "aeria-sdk": "latest"
+    "aeria": "^0.0.58",
+    "aeria-sdk": "^0.0.45"
   },
   "devDependencies": {
-    "aeria-build": "latest"
+    "aeria-build": "^0.0.58"
   }
 }
