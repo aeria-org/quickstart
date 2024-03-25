@@ -3,6 +3,8 @@ const fs = require('fs')
 const path = require('path')
 const { spawn } = require('child_process')
 
+const LOCK_FILENAME = 'create-aeria-app.lock'
+
 /**
  * @param {string} workspace
  * @param {string} origin
@@ -60,24 +62,29 @@ const main = async () => {
   await moveFolder('api', '.aeria')
   await moveFolder('web', '.aeria-ui')
 
-  await updateDependency(null, [
-    'dualist',
-    'eslint-config-aeria',
-  ])
+  if( !fs.existsSync(LOCK_FILENAME) ) {
+    await updateDependency(null, [
+      'dualist',
+      'eslint-config-aeria',
+    ])
 
-  await updateDependency('api', [
-    'aeria',
-    'aeria-build',
-    'aeria-sdk',
-  ])
+    await updateDependency('api', [
+      'aeria',
+      'aeria-build',
+      'aeria-sdk',
+    ])
 
-  await updateDependency('web', [
-    '@aeria-ui/i18n-en',
-    'aeria-app-layout',
-    'aeria-ui',
-    'aeria-ui-build',
-    'eslint-config-aeriaui',
-  ])
+    await updateDependency('web', [
+      '@aeria-ui/i18n-en',
+      'aeria-app-layout',
+      'aeria-ui',
+      'aeria-ui-build',
+      'eslint-config-aeriaui',
+    ])
+
+    await fs.promises.writeFile(LOCK_FILENAME, '')
+  }
+
 }
 
 main()

@@ -16,8 +16,8 @@
   "devDependencies": {
     "@commitlint/cli": "^17.8.1",
     "@commitlint/config-conventional": "^17.8.1",
-    "dualist": "latest",
-    "eslint-config-aeria": "latest",
+    "dualist": "^0.0.5",
+    "eslint-config-aeria": "^0.0.28",
     "typescript": "^5.4.0-beta"
   },
   "dependencies": {

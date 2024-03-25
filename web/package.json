@@ -22,7 +22,7 @@
   "devDependencies": {
     "aeria-ui-build": "^0.0.8",
     "autoprefixer": "^10.4.16",
-    "eslint-config-aeriaui": "latest",
+    "eslint-config-aeriaui": "^0.0.10",
     "eslint-plugin-readable-tailwind": "^1.0.0",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.5",
