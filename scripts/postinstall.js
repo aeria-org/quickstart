@@ -39,7 +39,7 @@ const moveFolder = async (workspace, origin) => {
 const updateDependency = async (workspace, dependencies) => {
   const proc = spawn(
     'npm',
-    ['install', '--lockfile-only'].concat(dependencies.map((dep) => `${dep}@latest`)),
+    ['install'].concat(dependencies.map((dep) => `${dep}@latest`)),
     workspace
       ? { cwd: workspace }
       : {}
@@ -83,17 +83,6 @@ const main = async () => {
     ])
 
     await fs.promises.writeFile(LOCK_FILENAME, '')
-
-    const proc = spawn('npm', ['install'])
-
-    /** @type Promise<void> */
-    const promise = new Promise((resolve) => {
-      proc.on('close', () => {
-        resolve()
-      })
-    })
-
-    await promise
   }
 
 }
