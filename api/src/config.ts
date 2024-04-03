@@ -1,6 +1,7 @@
 import type { ApiConfig } from 'aeria'
 
 export const config: ApiConfig = {
+  apiBase: '/api',
   apiUrl: process.env.API_URL,
   secret: process.env.APPLICATION_SECRET,
   database: {
