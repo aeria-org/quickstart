@@ -27,10 +27,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.59",
-    "aeria-sdk": "^0.0.45"
+    "aeria": "^0.0.65",
+    "aeria-sdk": "^0.0.50"
   },
   "devDependencies": {
-    "aeria-build": "^0.0.59"
+    "aeria-build": "^0.0.65"
   }
 }
