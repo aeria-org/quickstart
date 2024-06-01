@@ -18,10 +18,7 @@
     "@commitlint/config-conventional": "^17.8.1",
     "dualist": "^0.0.5",
     "eslint-config-aeria": "^0.0.28",
+    "husky": "^9.0.10",
     "typescript": "^5.4.0-beta"
-  },
-  "dependencies": {
-    "aeria": "^0.0.66",
-    "husky": "^9.0.10"
   }
 }

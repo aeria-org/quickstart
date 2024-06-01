@@ -72,7 +72,6 @@ const main = async () => {
 
     await updateDependency('api', [
       'aeria',
-      'aeria-build',
       'aeria-sdk',
     ])
 
@@ -80,13 +79,14 @@ const main = async () => {
       '@aeria-ui/i18n-en',
       'aeria-app-layout',
       'aeria-ui',
-      'aeria-ui-build',
       'eslint-config-aeriaui',
     ])
 
     await fs.promises.writeFile(LOCK_FILENAME, '')
   }
 
+  await fs.promises.copyFile('package-lock.json', 'api/package-lock.json')
+  await fs.promises.copyFile('package-lock.json', 'web/package-lock.json')
 }
 
 main()
