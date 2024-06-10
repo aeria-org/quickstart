@@ -1,9 +1,12 @@
-import type { ApiConfig } from 'aeria'
+import type { InitApiConfig } from 'aeria'
 
-export const config: ApiConfig = {
-  apiBase: '/api',
-  apiUrl: process.env.API_URL,
+export const config: InitApiConfig = {
+  baseUrl: '/api',
+  publicUrl: process.env.API_URL,
   secret: process.env.APPLICATION_SECRET,
+  security: {
+    exposeFunctionsByDefault: true,
+  },
   database: {
     mongodbUrl: process.env.MONGODB_URL,
   },

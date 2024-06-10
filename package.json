@@ -14,11 +14,11 @@
     "web/"
   ],
   "devDependencies": {
-    "@commitlint/cli": "^17.8.1",
-    "@commitlint/config-conventional": "^17.8.1",
+    "@commitlint/cli": "^19.3.0",
+    "@commitlint/config-conventional": "^19.2.2",
     "dualist": "^0.0.5",
-    "eslint-config-aeria": "^0.0.28",
-    "husky": "^9.0.10",
-    "typescript": "^5.4.0-beta"
+    "eslint-config-aeria": "^0.0.31",
+    "husky": "^9.0.11",
+    "typescript": "^5.4.5"
   }
 }

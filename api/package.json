@@ -15,7 +15,7 @@
     "start": "node -r aeria/loader ./dist/index.js"
   },
   "aeriaSdk": {
-    "apiUrl": {
+    "publicUrl": {
       "development": "http://localhost:3000/api"
     },
     "storage": {
@@ -27,10 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.65",
-    "aeria-sdk": "^0.0.50"
-  },
-  "devDependencies": {
-    "aeria-build": "^0.0.65"
+    "aeria": "^0.0.103",
+    "aeria-sdk": "^0.0.84"
   }
 }

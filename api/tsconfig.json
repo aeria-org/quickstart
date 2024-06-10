@@ -1,5 +1,5 @@
 {
-    "extends": "aeria-build/config/tsconfig.json",
+    "extends": "@aeriajs/cli/config/tsconfig.json",
     "compilerOptions": {
         "outDir": "dist",
         "preserveSymlinks": true

@@ -1,0 +1,25 @@
+collection Pet {
+  indexes {
+    name
+  }
+  properties {
+    name str
+  }
+  functions {
+    get @expose(true)
+    getAll @expose(true)
+  }
+}
+
+collection Person {
+  properties {
+    name str
+    pets []Pet
+  }
+  functions {
+    get @expose("unauthenticated")
+    getAll
+    insert
+    hello? @expose(true)
+  }
+}
