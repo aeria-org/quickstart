@@ -13,7 +13,6 @@ const moveFolder = async (workspace, origin) => {
   const target = path.join(workspace, origin)
 
   if( fs.existsSync(origin) ) {
-    console.log('exists', origin)
     if( !fs.existsSync(target) ) {
       await fs.promises.rename(
         origin,
