@@ -3,7 +3,7 @@ FROM node:20
 WORKDIR /opt/application/api
 COPY . .
 
-RUN npm install
+RUN npm ci
 RUN npm run build
 
 CMD npm run build:post \
