@@ -20,6 +20,7 @@ jobs:
         run: npm install
       - name: Build packages
         run: |
-          npm --workspace=api run build
-          npm --workspace=api run build:icons
-          npm --workspace=web run build:ci
+          (cd api; npm run build)
+          (cd api; npm run build:icons)
+          (cd web; npm run build:ci)
+
