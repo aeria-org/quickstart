@@ -1,5 +1,6 @@
 #!/usr/bin/env sh
 . "$(dirname -- "$0")/_/husky.sh"
 
-npm --workspaces run lint:fix
+(cd api; npm run lint:fix)
+(cd web; npm run lint:fix)
 
