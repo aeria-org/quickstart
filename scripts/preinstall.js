@@ -36,8 +36,8 @@ const updateDependency = async (workspace, dependencies, tag) => {
 
 const main = async () => {
   const tag = fs.existsSync(LOCK_FILENAME)
-    ? 'latest'
-    : null
+    ? null
+    : 'latest'
 
   await updateDependency(null, [
     'dualist',
