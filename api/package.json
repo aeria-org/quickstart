@@ -27,7 +27,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.104",
-    "aeria-sdk": "^0.0.85"
+    "aeria": "^0.0.107",
+    "aeria-sdk": "^0.0.88"
   }
 }
