@@ -11,12 +11,5 @@ export const person = extendPersonCollection({
       },
     },
   },
-  functions: {
-    hello: (_payload) => {
-      return {
-        success: true,
-      }
-    },
-  },
 })
 
