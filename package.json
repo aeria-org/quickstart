@@ -3,7 +3,8 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "preinstall": "husky && node scripts/preinstall.js && cp package-lock.json api && cp package-lock.json web",
+    "preinstall": "node scripts/preinstall.js",
+    "postinstall": "husky",
     "dev": "dualist api web"
   },
   "keywords": [],

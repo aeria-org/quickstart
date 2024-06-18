@@ -7,15 +7,13 @@ const LOCK_FILENAME = 'create-aeria-app.lock'
 
 /**
  * @param {string | null} workspace
- * @param {string[]} dependencies
- * @param {string | null=} tag
+ * @param {string} cmd
 */
-const updateDependency = async (workspace, dependencies, tag) => {
+const command = async (workspace, cmd) => {
+  const [bin, ...args] = cmd.split(' ')
   const proc = spawn(
-    'npm',
-    ['install', '--force'].concat(
-      dependencies.map((dep) => tag ? `${dep}@${tag}` : dep)
-    ),
+    bin,
+    args,
     workspace
       ? { cwd: workspace }
       : {}
@@ -31,32 +29,47 @@ const updateDependency = async (workspace, dependencies, tag) => {
     })
   })
 
-  await promise
+  return promise
+}
+
+/**
+ * @param {string | null} workspace
+ * @param {string[]} dependencies
+*/
+const updateDependencies = async (workspace, dependencies) => {
+  return command(workspace, [
+    'npm',
+    'install',
+    '--force',
+    dependencies.map((dep) => `${dep}@latest`)
+  ].flat().join(' '))
 }
 
 const main = async () => {
-  const tag = fs.existsSync(LOCK_FILENAME)
-    ? null
-    : 'latest'
+  if( !fs.existsSync(LOCK_FILENAME) ) {
+    await updateDependencies(null, [
+      'dualist',
+      'eslint-config-aeria',
+    ])
 
-  await updateDependency(null, [
-    'dualist',
-    'eslint-config-aeria',
-  ], tag)
+    await updateDependencies('api', [
+      'aeria',
+      'aeria-sdk',
+    ])
 
-  await updateDependency('api', [
-    'aeria',
-    'aeria-sdk',
-  ], tag)
+    await updateDependencies('web', [
+      '@aeria-ui/i18n-en',
+      'aeria-app-layout',
+      'aeria-ui',
+      'eslint-config-aeriaui',
+    ])
 
-  await updateDependency('web', [
-    '@aeria-ui/i18n-en',
-    'aeria-app-layout',
-    'aeria-ui',
-    'eslint-config-aeriaui',
-  ], tag)
+    await fs.promises.writeFile(LOCK_FILENAME, '')
+    return
+  }
 
-  await fs.promises.writeFile(LOCK_FILENAME, '')
+  await command('api', 'npm install')
+  await command('web', 'npm install')
 }
 
 main()

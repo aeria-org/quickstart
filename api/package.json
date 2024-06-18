@@ -21,13 +21,17 @@
     "storage": {
       "strategy": "localStorage",
       "namespace": "aeria"
-    }
+    },
+    "mirrorPaths": [
+      ".aeria",
+      "../web/.aeria-ui"
+    ]
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.107",
-    "aeria-sdk": "^0.0.88"
+    "aeria": "^0.0.119",
+    "aeria-sdk": "^0.0.98"
   }
 }

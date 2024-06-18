@@ -1,7 +1,7 @@
 // @ts-check
 import vueRouter from 'unplugin-vue-router/vite'
 
-/** @type {import('aeria-ui-build').InstanceConfig} */
+/** @type {import('@aeria-ui/cli').InstanceConfig} */
 export default {
   site: {
     title: 'Quickstart',
