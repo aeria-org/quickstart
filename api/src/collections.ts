@@ -1,5 +1,6 @@
 export * from '../.aeria/out/collections/index.mjs'
-import { extendPersonCollection } from '../.aeria/out/collections/index.mjs'
+export { user, file, tempFile } from 'aeria'
+import { extendPersonCollection } from '../.aeria/out/index.mjs'
 
 export const person = extendPersonCollection({
   description: {

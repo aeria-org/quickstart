@@ -14,9 +14,10 @@ const command = async (workspace, cmd) => {
   const proc = spawn(
     bin,
     args,
-    workspace
-      ? { cwd: workspace }
-      : {}
+    {
+      shell: true,
+      cwd: workspace || '.',
+    },
   )
 
   proc.stdout.pipe(process.stdout)
@@ -28,6 +29,11 @@ const command = async (workspace, cmd) => {
       resolve()
     })
   })
+
+  await promise
+  if( proc.exitCode !== 0 ) {
+    process.exit(proc.exitCode)
+  }
 
   return promise
 }

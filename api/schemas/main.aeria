@@ -1,25 +1,37 @@
 collection Pet {
+  icon "dog"
   indexes {
     name
   }
   properties {
     name str
+    type enum @values(["dog", "cat"])
+    picture File @accept(["image/*"])
   }
   functions {
-    get @expose(true)
-    getAll @expose(true)
+    get @expose
+    getAll @expose
+    insert @expose
+    upload @expose
+  }
+  presets {
+    crud
   }
 }
 
 collection Person {
+  icon "person"
   properties {
     name str
     pets []Pet
   }
   functions {
-    get @expose("unauthenticated")
-    getAll
-    insert
-    hello? @expose(true)
+    get @expose
+    getAll @expose
+    insert @expose
+  }
+  presets {
+    crud
   }
 }
+
