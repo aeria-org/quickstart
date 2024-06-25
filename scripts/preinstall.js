@@ -67,6 +67,7 @@ const main = async () => {
       '@aeria-ui/i18n-en',
       'aeria-app-layout',
       'aeria-ui',
+      'aeria-sdk',
       'eslint-config-aeriaui',
     ])
 
