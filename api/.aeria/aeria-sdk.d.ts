@@ -11,6 +11,7 @@ import type {
 declare type MirrorDescriptions = {
   "file": {
     "$id": "file",
+    "icon": "file",
     "owned": "always",
     "presets": [
       "owned"
@@ -214,6 +215,7 @@ declare type MirrorDescriptions = {
   },
   "tempFile": {
     "$id": "tempFile",
+    "icon": "file",
     "temporary": {
       "index": "created_at",
       "expireAfterSeconds": 3600
@@ -250,8 +252,73 @@ declare type MirrorDescriptions = {
       }
     }
   },
+  "tutor": {
+    "$id": "tutor",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "pictures": {
+        "type": "array",
+        "items": {
+          "$ref": "file",
+          "accept": [
+            "image/*"
+          ],
+          "indexes": [
+            "name",
+            "link",
+            "type"
+          ]
+        }
+      },
+      "dog": {
+        "const": "dog"
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "icon": "person",
+    "presets": [
+      "crud"
+    ],
+    "actions": {
+      "ui:spawnAdd": {
+        "label": "action.add",
+        "icon": "plus",
+        "button": true,
+        "translate": true
+      }
+    },
+    "individualActions": {
+      "ui:spawnEdit": {
+        "label": "action.edit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "remove": {
+        "label": "action.remove",
+        "icon": "trash",
+        "ask": true,
+        "translate": true
+      }
+    }
+  },
   "user": {
     "$id": "user",
+    "icon": "users",
     "required": [
       "name",
       "roles",
@@ -387,7 +454,6 @@ declare type MirrorDescriptions = {
         "translate": true
       }
     },
-    "icon": "users",
     "filters": [
       "name",
       "roles",
@@ -522,6 +588,46 @@ declare type MirrorRouter = {
       "builtin": true
     }
   },
+  "/tutor/get": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/tutor/getAll": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/tutor/insert": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/tutor/remove": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
+  "/tutor/upload": {
+    "POST": {
+      "roles": [
+        "root"
+      ],
+      "builtin": true
+    }
+  },
   "/user/get": {
     "POST": {
       "roles": [
@@ -622,15 +728,15 @@ declare type MirrorRouter = {
 
 
 declare global {
-      type Collections = {
-        [K in keyof MirrorDescriptions]: {
-          item: SchemaWithId<MirrorDescriptions[K]>
-        }
-      }
+  type Collections = {
+    [K in keyof MirrorDescriptions]: {
+      item: SchemaWithId<MirrorDescriptions[K]>
     }
+  }
+}
 
 declare module 'aeria-sdk' {
-  import { TopLevelObject, TLOFunctions } from 'aeria-sdk'
+  import { TopLevelObject } from 'aeria-sdk'
 
   type UnionToIntersection<T> = (T extends any ? ((x: T) => 0) : never) extends ((x: infer R) => 0)
     ? R
