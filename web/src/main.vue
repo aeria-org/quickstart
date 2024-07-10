@@ -5,7 +5,6 @@ import './style/main.less'
 </script>
 
 <template>
-  <aeria-main>
-  </aeria-main>
+  <aeria-main />
 </template>
 

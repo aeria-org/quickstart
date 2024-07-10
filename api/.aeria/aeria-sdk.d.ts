@@ -11,7 +11,7 @@ import type {
 declare type MirrorDescriptions = {
   "file": {
     "$id": "file",
-    "icon": "file",
+    "icon": "paperclip",
     "owned": "always",
     "presets": [
       "owned"
@@ -102,9 +102,6 @@ declare type MirrorDescriptions = {
           ]
         }
       },
-      "treatment": {
-        "readOnly": true
-      },
       "created_at": {
         "type": "string",
         "format": "date-time",
@@ -137,6 +134,12 @@ declare type MirrorDescriptions = {
         "label": "action.edit",
         "icon": "pencil-simple",
         "translate": true
+      },
+      "route:/dashboard/:collection/:id": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "setItem": true
       },
       "remove": {
         "label": "action.remove",
@@ -205,6 +208,74 @@ declare type MirrorDescriptions = {
         "icon": "pencil-simple",
         "translate": true
       },
+      "route:/dashboard/:collection/:id": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "setItem": true
+      },
+      "remove": {
+        "label": "action.remove",
+        "icon": "trash",
+        "ask": true,
+        "translate": true
+      }
+    }
+  },
+  "petToy": {
+    "$id": "petToy",
+    "properties": {
+      "name": {
+        "type": "string"
+      },
+      "pets": {
+        "type": "array",
+        "items": {
+          "$ref": "pet",
+          "indexes": [
+            "name"
+          ]
+        }
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "icon": "person",
+    "presets": [
+      "crud"
+    ],
+    "actions": {
+      "ui:spawnAdd": {
+        "label": "action.add",
+        "icon": "plus",
+        "button": true,
+        "translate": true
+      }
+    },
+    "individualActions": {
+      "ui:spawnEdit": {
+        "label": "action.edit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "route:/dashboard/:collection/:id": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "setItem": true
+      },
       "remove": {
         "label": "action.remove",
         "icon": "trash",
@@ -252,70 +323,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "tutor": {
-    "$id": "tutor",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "pictures": {
-        "type": "array",
-        "items": {
-          "$ref": "file",
-          "accept": [
-            "image/*"
-          ],
-          "indexes": [
-            "name",
-            "link",
-            "type"
-          ]
-        }
-      },
-      "dog": {
-        "const": "dog"
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "person",
-    "presets": [
-      "crud"
-    ],
-    "actions": {
-      "ui:spawnAdd": {
-        "label": "action.add",
-        "icon": "plus",
-        "button": true,
-        "translate": true
-      }
-    },
-    "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "remove": {
-        "label": "action.remove",
-        "icon": "trash",
-        "ask": true,
-        "translate": true
-      }
-    }
-  },
   "user": {
     "$id": "user",
     "icon": "users",
@@ -351,7 +358,17 @@ declare type MirrorDescriptions = {
       "roles": {
         "type": "array",
         "items": {
-          "type": "string"
+          "type": "string",
+          "enum": [
+            "root",
+            "supervisor",
+            "customer"
+          ],
+          "values": [
+            "root",
+            "supervisor",
+            "customer"
+          ]
         },
         "uniqueItems": true
       },
@@ -407,7 +424,6 @@ declare type MirrorDescriptions = {
     },
     "presets": [
       "crud",
-      "view",
       "duplicate"
     ],
     "layout": {
@@ -437,15 +453,16 @@ declare type MirrorDescriptions = {
         "icon": "link",
         "translate": true
       },
+      "route:/dashboard/:collection/:id": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "setItem": true
+      },
       "remove": {
         "label": "action.remove",
         "icon": "trash",
         "ask": true,
-        "translate": true
-      },
-      "ui:spawnView": {
-        "label": "action.view",
-        "icon": "magnifying-glass-plus",
         "translate": true
       },
       "ui:duplicate": {
@@ -588,7 +605,7 @@ declare type MirrorRouter = {
       "builtin": true
     }
   },
-  "/tutor/get": {
+  "/petToy/get": {
     "POST": {
       "roles": [
         "root"
@@ -596,7 +613,7 @@ declare type MirrorRouter = {
       "builtin": true
     }
   },
-  "/tutor/getAll": {
+  "/petToy/getAll": {
     "POST": {
       "roles": [
         "root"
@@ -604,23 +621,7 @@ declare type MirrorRouter = {
       "builtin": true
     }
   },
-  "/tutor/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/tutor/remove": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/tutor/upload": {
+  "/petToy/insert": {
     "POST": {
       "roles": [
         "root"
@@ -722,7 +723,18 @@ declare type MirrorRouter = {
     }
   },
   "/test": {
-    "GET": null
+    "GET": {
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "banana": {
+              "const": "oi"
+            }
+          }
+        }
+      ]
+    }
   }
 }
 

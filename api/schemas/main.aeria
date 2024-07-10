@@ -1,37 +1,12 @@
-collection Pet {
-  icon "dog"
-  indexes {
-    name
-  }
+collection File extends aeria.file {}
+collection TempFile extends aeria.tempFile {}
+collection User extends aeria.user {
   properties {
-    name str
-    type enum @values(["dog", "cat"])
-    picture File @accept(["image/*"])
-  }
-  functions {
-    get @expose
-    getAll @expose
-    insert @expose
-    upload @expose
-  }
-  presets {
-    crud
-  }
-}
-
-collection Person {
-  icon "person"
-  properties {
-    name str
-    pets []Pet
-  }
-  functions {
-    get @expose
-    getAll @expose
-    insert @expose
-  }
-  presets {
-    crud
+    roles []enum @values([
+      "root",
+      "supervisor",
+      "customer"
+    ])
   }
 }
 
