@@ -12,7 +12,7 @@
     "build:icons": "aeria -i",
     "build:post": "aeria -mik",
     "dev": "aeria -w",
-    "start": "node -r aeria/loader ./dist/index.js"
+    "start": "node --import aeria/loader ./dist/index.js"
   },
   "aeriaSdk": {
     "publicUrl": {

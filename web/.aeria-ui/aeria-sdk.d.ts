@@ -87,203 +87,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "person": {
-    "$id": "person",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "pets": {
-        "type": "array",
-        "items": {
-          "$ref": "pet",
-          "indexes": [
-            "name"
-          ]
-        }
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "person",
-    "presets": [
-      "crud"
-    ],
-    "actions": {
-      "ui:spawnAdd": {
-        "label": "action.add",
-        "icon": "plus",
-        "button": true,
-        "translate": true
-      }
-    },
-    "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/:collection/:id": {
-        "label": "action.view",
-        "icon": "eye",
-        "translate": true,
-        "setItem": true
-      },
-      "remove": {
-        "label": "action.remove",
-        "icon": "trash",
-        "ask": true,
-        "translate": true
-      }
-    }
-  },
-  "pet": {
-    "$id": "pet",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "type": {
-        "enum": [
-          "dog",
-          "cat"
-        ]
-      },
-      "picture": {
-        "$ref": "file",
-        "accept": [
-          "image/*"
-        ],
-        "indexes": [
-          "name",
-          "link",
-          "type"
-        ]
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "dog",
-    "presets": [
-      "crud"
-    ],
-    "indexes": [
-      "name"
-    ],
-    "actions": {
-      "ui:spawnAdd": {
-        "label": "action.add",
-        "icon": "plus",
-        "button": true,
-        "translate": true
-      }
-    },
-    "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/:collection/:id": {
-        "label": "action.view",
-        "icon": "eye",
-        "translate": true,
-        "setItem": true
-      },
-      "remove": {
-        "label": "action.remove",
-        "icon": "trash",
-        "ask": true,
-        "translate": true
-      }
-    }
-  },
-  "petToy": {
-    "$id": "petToy",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "pets": {
-        "type": "array",
-        "items": {
-          "$ref": "pet",
-          "indexes": [
-            "name"
-          ]
-        }
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "person",
-    "presets": [
-      "crud"
-    ],
-    "actions": {
-      "ui:spawnAdd": {
-        "label": "action.add",
-        "icon": "plus",
-        "button": true,
-        "translate": true
-      }
-    },
-    "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/:collection/:id": {
-        "label": "action.view",
-        "icon": "eye",
-        "translate": true,
-        "setItem": true
-      },
-      "remove": {
-        "label": "action.remove",
-        "icon": "trash",
-        "ask": true,
-        "translate": true
-      }
-    }
-  },
   "tempFile": {
     "$id": "tempFile",
     "icon": "file",
@@ -437,27 +240,34 @@ declare type MirrorDescriptions = {
       }
     },
     "individualActions": {
-      "ui:spawnEdit": {
-        "label": "action.edit",
-        "icon": "pencil-simple",
-        "translate": true
-      },
-      "route:/dashboard/user/changepass": {
+      "changePassword": {
         "label": "change_password",
         "icon": "key",
-        "fetchItem": true,
-        "translate": true
+        "translate": true,
+        "route": {
+          "name": "/dashboard/user/changepass",
+          "fetchItem": true
+        }
       },
       "copyActivationLink": {
         "label": "copy_activation_link",
         "icon": "link",
         "translate": true
       },
-      "route:/dashboard/:collection/:id": {
+      "spawnEdit": {
+        "label": "action.edit",
+        "event": "spawnEdit",
+        "icon": "pencil-simple",
+        "translate": true
+      },
+      "viewItem": {
         "label": "action.view",
         "icon": "eye",
         "translate": true,
-        "setItem": true
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
       },
       "remove": {
         "label": "action.remove",
@@ -465,8 +275,9 @@ declare type MirrorDescriptions = {
         "ask": true,
         "translate": true
       },
-      "ui:duplicate": {
+      "duplicate": {
         "label": "action.duplicate",
+        "event": "duplicate",
         "icon": "copy",
         "translate": true
       }
@@ -498,8 +309,9 @@ declare type MirrorDescriptions = {
       }
     },
     "actions": {
-      "ui:spawnAdd": {
+      "spawnAdd": {
         "label": "action.add",
+        "event": "spawnAdd",
         "icon": "plus",
         "button": true,
         "translate": true
@@ -542,86 +354,6 @@ declare type MirrorRouter = {
     }
   },
   "/file/removeAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/person/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/person/getAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/person/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/getAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/upload": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/petToy/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/petToy/getAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/petToy/insert": {
     "POST": {
       "roles": [
         "root"
@@ -719,20 +451,6 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
-      ]
-    }
-  },
-  "/test": {
-    "GET": {
-      "response": [
-        {
-          "type": "object",
-          "properties": {
-            "banana": {
-              "const": "oi"
-            }
-          }
-        }
       ]
     }
   }
