@@ -7,10 +7,10 @@ export const routes = autoRoutes.concat(
   userRoutes(AuthWall),
   dashboardRoutes(DashboardLayout),
   [
-{
-    path: '/',
-    redirect: '/user/signin',
-  },
-],
+    {
+      path: '/',
+      redirect: '/user/signin',
+    },
+  ],
 )
 

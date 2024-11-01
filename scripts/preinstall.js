@@ -1,7 +1,5 @@
-// @ts-check
-const fs = require('fs')
-const path = require('path')
-const { spawn } = require('child_process')
+import * as fs from 'fs'
+import { spawn } from 'child_process'
 
 const LOCK_FILENAME = 'create-aeria-app.lock'
 
