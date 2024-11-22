@@ -166,11 +166,6 @@ declare type MirrorDescriptions = {
             "root",
             "supervisor",
             "customer"
-          ],
-          "values": [
-            "root",
-            "supervisor",
-            "customer"
           ]
         },
         "uniqueItems": true

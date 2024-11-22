@@ -4,8 +4,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "preinstall": "node scripts/preinstall.js",
-    "postinstall": "husky",
+    "postinstall": "husky; node scripts/preinstall.js",
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
     "dev": "dualist api web"
@@ -20,5 +19,9 @@
     "dualist": "^0.0.5",
     "husky": "^9.0.11",
     "typescript": "^5.4.5"
-  }
+  },
+  "workspaces": [
+    "api",
+    "web"
+  ]
 }
