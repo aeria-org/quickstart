@@ -1,7 +1,7 @@
 {
   "name": "web",
-  "version": "1.0.0",
   "type": "module",
+  "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -16,9 +16,10 @@
   "license": "ISC",
   "dependencies": {
     "@aeria-ui/i18n-en": "^0.0.3",
-    "aeria-app-layout": "^0.0.41",
-    "aeria-sdk": "^0.0.113",
-    "aeria-ui": "^0.0.89"
+    "@eslint-aeria/config-ui": "^0.0.3",
+    "aeria-app-layout": "^0.0.46",
+    "aeria-sdk": "^0.0.156",
+    "aeria-ui": "^0.0.148"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.19",
