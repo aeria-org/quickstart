@@ -1,8 +1,8 @@
 // @ts-check
-import * as fs from 'fs'
-import * as path from 'path'
-import { exec as exec_ } from 'child_process'
-import { promisify } from 'util'
+import * as fs from 'node:fs'
+import * as path from 'node:path'
+import { exec as exec_ } from 'node:child_process'
+import { promisify } from 'node:util'
 
 const exec = promisify(exec_)
 const LOCK_FILENAME = 'create-aeria-app.lock'
