@@ -14,13 +14,13 @@ jobs:
       - name: Setup node
         uses: actions/setup-node@v3
         with:
-          node-version: 20
+          node-version: 22
           cache: npm
       - name: Install dependencies
         run: npm install
       - name: Build packages
         run: |
-          (cd api; npm run build)
-          (cd api; npm run build:icons)
-          (cd web; npm run build:ci)
+          npm --workspace=api run build
+          npm --workspace=api run build:icons
+          npm --workspace=web run build:ci
 
