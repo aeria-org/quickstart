@@ -7,8 +7,8 @@ declare global {
       | 'GODMODE_USERNAME'
       | 'GODMODE_PASSWORD'
       | 'STORAGE_PATH'
-      | 'STORAGE_TEMP_PATH',
-      string
+      | 'STORAGE_TEMP_PATH'
+      ,string
     > {}
   }
 }
