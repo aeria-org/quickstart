@@ -1,5 +1,6 @@
 // @ts-check
 import vueRouter from 'unplugin-vue-router/vite'
+import tailwindcss from '@tailwindcss/vite/dist/index.mjs'
 
 /** @type {import('@aeria-ui/cli').InstanceConfig} */
 export default {
@@ -20,6 +21,7 @@ export default {
   },
   vite: {
     plugins: [
+      tailwindcss(),
       vueRouter({
         dts: './.aeria-ui/typed-router.d.ts'
       }),

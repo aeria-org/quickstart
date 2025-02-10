@@ -1,11 +1,12 @@
 FROM node:22
 WORKDIR /opt/application/web
 
+COPY .aeria-ui .aeria-ui
+COPY @types @types
+COPY src src
+COPY static static
+
 COPY \
-  .aeria-ui \
-  @types \
-  src \
-  static \
   index.html \
   postcss.config.js \
   package.json \

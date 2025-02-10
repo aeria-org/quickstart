@@ -42,6 +42,11 @@ const main = async () => {
     }
   }
 
+  for( const cwd of ['api', 'web'] ) {
+    await exec('npm i --package-lock-only --workspaces false', {
+      cwd,
+    })
+  }
 }
 
 main()
