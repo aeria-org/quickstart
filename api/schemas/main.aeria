@@ -2,11 +2,74 @@ collection File extends aeria.file {}
 collection TempFile extends aeria.tempFile {}
 collection User extends aeria.user {
   properties {
-    roles []enum @values([
+    roles [..1]enum @values([
       "root",
       "supervisor",
-      "customer"
+      "customer",
     ])
   }
 }
+
+functionset Read {
+  get @expose([
+    "root",
+    "customer",
+  ])
+  getAll @expose([
+    "root",
+    "customer",
+  ])
+}
+
+functionset Write {
+  insert @expose([
+    "root",
+    "customer",
+  ])
+}
+
+collection Pet {
+  icon "dog"
+  properties {}
+  functions {
+    include(Read)
+    include(Write)
+    getAll @expose("unauthenticated")
+  }
+}
+
+collection Fruit {
+  icon "orange"
+  properties {
+    name str
+    kcal int
+  }
+  functions {
+    include(Read)
+    include(Write)
+    getAll @expose("unauthenticated")
+  }
+}
+
+contract GetUserBySlug {
+  roles {
+    customer
+  }
+  query {
+    properties {
+      slug str
+    }
+  }
+  response
+    | Error {
+      properties {
+        httpStatus const @value(400)
+        code enum @values([
+          "RESOURCE_NOT_FOUND"
+        ])
+      }
+    }
+    | Result User
+}
+
 

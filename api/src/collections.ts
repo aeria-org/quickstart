@@ -1,2 +1,2 @@
-export * from '../.aeria/out/collections/index.mjs'
+export * from '../.aeria/out/collections/index.js'
 
