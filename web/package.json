@@ -19,7 +19,7 @@
     "@eslint-aeria/config-ui": "^0.0.3",
     "aeria-app-layout": "^0.0.48",
     "aeria-sdk": "^0.0.176",
-    "aeria-ui": "^0.0.162"
+    "aeria-ui": "^0.0.163"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.9",
