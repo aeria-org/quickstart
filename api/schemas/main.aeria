@@ -11,6 +11,11 @@ collection User extends aeria.user {
 }
 
 contract GetUserBySlug {
+  payload {
+    properties {
+      slug str
+    }
+  }
   response
     | Result User
     | Error {

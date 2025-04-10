@@ -612,6 +612,14 @@ declare type MirrorRouter = {
   },
   "/user/getBySlug": {
     "GET": {
+      "payload": {
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          }
+        }
+      },
       "response": [
         {
           "type": "object",
