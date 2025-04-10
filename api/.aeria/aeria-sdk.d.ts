@@ -644,7 +644,7 @@ declare type MirrorRouter = {
               "properties": {
                 "httpStatus": {
                   "enum": [
-                    400
+                    404
                   ]
                 },
                 "code": {

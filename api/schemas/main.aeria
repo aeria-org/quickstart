@@ -20,7 +20,7 @@ contract GetUserBySlug {
     | Result User
     | Error {
       properties {
-        httpStatus enum @values([400])
+        httpStatus enum @values([404])
         code enum @values([
           "RESOURCE_NOT_FOUND",
         ])

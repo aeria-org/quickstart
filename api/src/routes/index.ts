@@ -11,7 +11,7 @@ router.GET('/user/getBySlug', async (context) => {
   })
 
   if( error ) {
-    return context.error(400, {
+    return context.error(404, {
       code: 'RESOURCE_NOT_FOUND',
     })
   }
