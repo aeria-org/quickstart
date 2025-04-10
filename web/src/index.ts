@@ -9,8 +9,8 @@ import * as stores from './stores/index.js'
 const options = defineOptions({
   component: Main,
   routes,
-  setup: (context) => {
-    registerStores(stores, context.context)
+  setup: ({ context }) => {
+    registerStores(stores, context)
   },
   i18n: {
     current: 'en',

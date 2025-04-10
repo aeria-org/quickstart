@@ -4,6 +4,7 @@ WORKDIR /opt/application/api
 COPY .aeria .aeria
 COPY @types @types
 COPY src src
+COPY schemas chemas
 COPY \
   package.json \
   package-lock.json \

@@ -8,7 +8,7 @@
     "
   >
     <img
-      src="/static/empty.svg"
+      src="/empty.svg"
       class="
         h-[30vw]
         lg:h-[14rem]
@@ -22,7 +22,7 @@
         gap-8
         font-[300]
         text-gray-500
-        dark:text-red-200
+        dark:text-gray-200
       "
     >
       {{ t('no_results', { capitalize: true }) }}

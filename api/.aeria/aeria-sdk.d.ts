@@ -89,52 +89,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "fruit": {
-    "$id": "fruit",
-    "properties": {
-      "name": {
-        "type": "string"
-      },
-      "kcal": {
-        "type": "integer"
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "orange"
-  },
-  "pet": {
-    "$id": "pet",
-    "properties": {
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    },
-    "icon": "dog"
-  },
   "tempFile": {
     "$id": "tempFile",
     "icon": "file",
@@ -217,7 +171,6 @@ declare type MirrorDescriptions = {
           "type": "string",
           "enum": [
             "root",
-            "supervisor",
             "customer"
           ]
         },
@@ -379,8 +332,7 @@ declare type MirrorRouter = {
   "/file/get": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -388,8 +340,7 @@ declare type MirrorRouter = {
   "/file/insert": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -397,16 +348,14 @@ declare type MirrorRouter = {
   "/file/download": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ]
     }
   },
   "/file/remove": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -414,62 +363,7 @@ declare type MirrorRouter = {
   "/file/removeAll": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/fruit/get": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/fruit/getAll": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/fruit/insert": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/get": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/getAll": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/insert": {
-    "POST": {
-      "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -477,8 +371,7 @@ declare type MirrorRouter = {
   "/user/get": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -502,8 +395,7 @@ declare type MirrorRouter = {
   "/user/upload": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -511,8 +403,7 @@ declare type MirrorRouter = {
   "/user/removeFile": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "builtin": true
     }
@@ -528,8 +419,7 @@ declare type MirrorRouter = {
   "/user/editProfile": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "payload": {
         "type": "object",
@@ -651,8 +541,7 @@ declare type MirrorRouter = {
   "/user/authenticate": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ]
     }
   },
@@ -667,24 +556,21 @@ declare type MirrorRouter = {
   "/user/createAccount": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ]
     }
   },
   "/user/getInfo": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ]
     }
   },
   "/user/getCurrentUser": {
     "POST": {
       "roles": [
-        "root",
-        "customer"
+        "root"
       ],
       "response": [
         {
@@ -726,37 +612,7 @@ declare type MirrorRouter = {
   },
   "/user/getBySlug": {
     "GET": {
-      "query": {
-        "type": "object",
-        "properties": {
-          "slug": {
-            "type": "string"
-          }
-        }
-      },
       "response": [
-        {
-          "type": "object",
-          "properties": {
-            "_tag": {
-              "const": "Error"
-            },
-            "error": {
-              "type": "object",
-              "properties": {
-                "httpStatus": {
-                  "const": 400
-                },
-                "code": {
-                  "enum": [
-                    "RESOURCE_NOT_FOUND"
-                  ]
-                }
-              }
-            },
-            "result": {}
-          }
-        },
         {
           "type": "object",
           "properties": {
@@ -768,10 +624,31 @@ declare type MirrorRouter = {
               "$ref": "user"
             }
           }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "error": {
+              "type": "object",
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    400
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND"
+                  ]
+                }
+              }
+            },
+            "result": {}
+          }
         }
-      ],
-      "roles": [
-        "customer"
       ]
     }
   }
