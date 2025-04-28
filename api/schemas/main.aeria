@@ -10,6 +10,39 @@ collection User extends aeria.user {
   }
 }
 
+collection Pet {
+  properties {
+    name str
+    breed str
+    age num
+    pic File @accept(["image/*"])
+  }
+  functions {
+    get @expose
+    getAll @expose
+    insert @expose
+    remove @expose
+    upload @expose
+  }
+  presets {
+    crud
+  }
+  layout {
+    name "grid"
+    options {
+      title name
+      picture pic
+      information {
+        name
+        breed
+        age
+        age
+      }
+      badge breed
+    }
+  }
+}
+
 contract GetUserBySlug {
   payload {
     properties {

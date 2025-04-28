@@ -17,6 +17,7 @@ export default {
     safeList: [
       'moon',
       'sun',
+      'file',
     ]
   },
   vite: {
