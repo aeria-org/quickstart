@@ -6,8 +6,6 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
     "build": "aeria -c",
     "build:icons": "aeria -i",
     "build:post": "aeria -mik",
@@ -31,7 +29,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.270",
-    "aeria-sdk": "^0.0.176"
+    "aeria": "^0.0.282",
+    "aeria-sdk": "^0.0.181"
   }
 }

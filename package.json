@@ -4,20 +4,14 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "postinstall": "node scripts/postinstall.js && husky",
-    "lint": "eslint .",
-    "lint:fix": "eslint . --fix",
+    "postinstall": "node scripts/postinstall.js",
     "dev": "dualist api web"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "@commitlint/cli": "^19.3.0",
-    "@commitlint/config-conventional": "^19.2.2",
-    "@eslint-aeria/config": "^0.0.5",
     "dualist": "^0.0.5",
-    "husky": "^9.0.11",
     "typescript": "^5.7.2",
     "vue-tsc": "^2.1.10"
   },

@@ -1,6 +1,0 @@
-#!/usr/bin/env sh
-
-if ! test $GITHUB_ACTIONS && ! test $SKIP; then
-  npm run --workspaces lint:fix
-fi
-

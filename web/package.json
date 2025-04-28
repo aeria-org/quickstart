@@ -6,8 +6,6 @@
   "main": "index.js",
   "scripts": {
     "dev": "aeria-ui -m serve",
-    "lint": "eslint src",
-    "lint:fix": "eslint src --fix",
     "build:ci": "vue-tsc --noEmit && aeria-ui -m build",
     "build": "aeria-ui -m build"
   },
@@ -16,15 +14,12 @@
   "license": "ISC",
   "dependencies": {
     "@aeria-ui/i18n-en": "^0.0.3",
-    "@eslint-aeria/config-ui": "^0.0.3",
     "aeria-app-layout": "^0.0.48",
-    "aeria-sdk": "^0.0.176",
-    "aeria-ui": "^0.0.163"
+    "aeria-sdk": "^0.0.181",
+    "aeria-ui": "^0.0.167"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.9",
-    "eslint-config-aeriaui": "^0.0.11",
-    "eslint-plugin-readable-tailwind": "^1.5.2",
     "tailwindcss": "^4.0.9",
     "unplugin-vue-router": "^0.9.1",
     "vue-tsc": "^2.0.21"
