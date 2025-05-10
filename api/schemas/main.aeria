@@ -27,6 +27,16 @@ collection Pet {
   presets {
     crud
   }
+
+
+  formLayout {
+    fields {
+      name {
+        if ((x == "mimdepapai" || x == "wooowx") && x == "a")
+        span 2
+      }
+    }
+  }
   layout {
     name "grid"
     options {
