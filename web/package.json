@@ -15,7 +15,7 @@
   "dependencies": {
     "@aeria-ui/i18n-en": "^0.0.3",
     "aeria-app-layout": "^0.0.49",
-    "aeria-sdk": "^0.0.181",
+    "aeria-sdk": "^0.0.182",
     "aeria-ui": "^0.0.169"
   },
   "devDependencies": {
