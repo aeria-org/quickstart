@@ -95,11 +95,11 @@ declare type MirrorDescriptions = {
       "name": {
         "type": "string"
       },
-      "breed": {
-        "type": "string"
-      },
       "age": {
         "type": "number"
+      },
+      "breed": {
+        "type": "string"
       },
       "pic": {
         "$ref": "file",
@@ -128,11 +128,66 @@ declare type MirrorDescriptions = {
         "isTimestamp": true
       }
     },
+    "required": {
+      "name": {
+        "operator": "gt",
+        "term1": "age",
+        "term2": 10
+      },
+      "breed": {
+        "and": [
+          {
+            "operator": "equal",
+            "term1": "name",
+            "term2": "oi"
+          },
+          {
+            "operator": "equal",
+            "term1": "name",
+            "term2": "x"
+          },
+          {
+            "operator": "equal",
+            "term1": "name",
+            "term2": "sa"
+          }
+        ]
+      },
+      "age": true
+    },
     "presets": [
       "crud"
     ],
+    "formLayout": {
+      "fields": {
+        "age": {
+          "span": 3
+        },
+        "breed": {
+          "if": {
+            "and": [
+              {
+                "operator": "equal",
+                "term1": "name",
+                "term2": "oi"
+              },
+              {
+                "operator": "equal",
+                "term1": "name",
+                "term2": "x"
+              },
+              {
+                "operator": "equal",
+                "term1": "name",
+                "term2": "sa"
+              }
+            ]
+          },
+          "span": 3
+        }
+      }
+    },
     "layout": {
-      "kind": "layout",
       "name": "grid",
       "options": {
         "title": "name",

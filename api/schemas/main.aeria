@@ -11,10 +11,18 @@ collection User extends aeria.user {
 }
 
 collection Pet {
+  middlewares {
+    multitenancy
+  }
+  required {
+    name @if(age > 10)
+    breed @if((name == "oi" && name == "x" && name == "sa"))
+    age
+  }
   properties {
     name str
-    breed str
     age num
+    breed str
     pic File @accept(["image/*"])
   }
   functions {
@@ -27,13 +35,14 @@ collection Pet {
   presets {
     crud
   }
-
-
   formLayout {
     fields {
-      name {
-        if ((x == "mimdepapai" || x == "wooowx") && x == "a")
-        span 2
+      age {
+        span 3
+      }
+      breed {
+        if (name == "oi" && name == "x" && name == "sa")
+        span 3
       }
     }
   }
