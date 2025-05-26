@@ -6,7 +6,7 @@ export const router = createRouter()
 router.GET('/user/getBySlug', async (context) => {
   const { error, result: user } = await context.collections.user.functions.get({
     filters: {
-      _id: context.request.query.slug,
+      email: context.request.query.slug,
     },
   })
 

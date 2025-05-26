@@ -101,17 +101,6 @@ declare type MirrorDescriptions = {
       "breed": {
         "type": "string"
       },
-      "root_user": {
-        "$ref": "user",
-        "constraints": {
-          "operator": "in",
-          "term1": "roles",
-          "term2": "root"
-        },
-        "indexes": [
-          "name"
-        ]
-      },
       "pic": {
         "$ref": "file",
         "accept": [
@@ -139,58 +128,9 @@ declare type MirrorDescriptions = {
         "isTimestamp": true
       }
     },
-    "required": {
-      "name": {
-        "operator": "gt",
-        "term1": "age",
-        "term2": 10
-      },
-      "breed": {
-        "or": [
-          {
-            "operator": "equal",
-            "term1": "name",
-            "term2": "thor"
-          },
-          {
-            "operator": "equal",
-            "term1": "name",
-            "term2": "bobby"
-          }
-        ]
-      },
-      "age": true
-    },
-    "filters": [
-      "name"
-    ],
     "presets": [
       "crud"
     ],
-    "formLayout": {
-      "fields": {
-        "age": {
-          "span": 3
-        },
-        "breed": {
-          "if": {
-            "or": [
-              {
-                "operator": "equal",
-                "term1": "name",
-                "term2": "thor"
-              },
-              {
-                "operator": "equal",
-                "term1": "name",
-                "term2": "bobby"
-              }
-            ]
-          },
-          "span": 3
-        }
-      }
-    },
     "layout": {
       "name": "grid",
       "options": {
@@ -199,7 +139,6 @@ declare type MirrorDescriptions = {
         "information": [
           "name",
           "breed",
-          "age",
           "age"
         ],
         "badge": "breed"
@@ -1696,12 +1635,7 @@ declare type MirrorRouter = {
         "type": "object",
         "properties": {
           "slug": {
-            "$ref": "user",
-            "constraints": {
-              "operator": "in",
-              "term1": "roles",
-              "term2": "root"
-            }
+            "type": "string"
           }
         }
       },
