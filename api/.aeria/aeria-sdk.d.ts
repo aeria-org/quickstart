@@ -1676,6 +1676,10 @@ declare type MirrorRouter = {
             "result": {}
           }
         }
+      ],
+      "roles": [
+        "root",
+        "customer"
       ]
     }
   }

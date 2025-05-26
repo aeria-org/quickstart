@@ -43,6 +43,10 @@ collection Pet {
 }
 
 contract GetUserBySlug {
+  roles {
+    root
+    customer
+  }
   query {
     properties {
       slug str
