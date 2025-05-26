@@ -19,11 +19,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 23
-          cache: pnpm
+          cache: npm
       - name: Install dependencies
-        run: pnpm install
+        run: npm install
       - name: Build packages
-        run: pnpm -r build
+        run: |
+          npm --workspace=api run build
+          npm --workspace=api run build:icons
+          npm --workspace=web run build:ci
+
 
   dependabot:
     runs-on: ubuntu-latest
@@ -38,7 +42,6 @@ jobs:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           cache: npm
       - name: Approve a PR
-        if: steps.metadata.outputs.update-type == 'version-update:semver-patch'
         run: gh pr merge --auto --merge "$PR_URL"
         env:
           PR_URL: ${{ github.event.pull_request.html_url }}

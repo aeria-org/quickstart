@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import '@aeria-ui/ui/style.css'
+import '@aeria-ui/ui/ui.css'
 import 'aeria-app-layout/style.css'
 import './style/main.less'
 </script>
