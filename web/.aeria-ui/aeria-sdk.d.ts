@@ -101,6 +101,17 @@ declare type MirrorDescriptions = {
       "breed": {
         "type": "string"
       },
+      "root_user": {
+        "$ref": "user",
+        "constraints": {
+          "operator": "in",
+          "term1": "roles",
+          "term2": "root"
+        },
+        "indexes": [
+          "name"
+        ]
+      },
       "pic": {
         "$ref": "file",
         "accept": [
@@ -135,26 +146,24 @@ declare type MirrorDescriptions = {
         "term2": 10
       },
       "breed": {
-        "and": [
+        "or": [
           {
             "operator": "equal",
             "term1": "name",
-            "term2": "oi"
+            "term2": "thor"
           },
           {
             "operator": "equal",
             "term1": "name",
-            "term2": "x"
-          },
-          {
-            "operator": "equal",
-            "term1": "name",
-            "term2": "sa"
+            "term2": "bobby"
           }
         ]
       },
       "age": true
     },
+    "filters": [
+      "name"
+    ],
     "presets": [
       "crud"
     ],
@@ -165,21 +174,16 @@ declare type MirrorDescriptions = {
         },
         "breed": {
           "if": {
-            "and": [
+            "or": [
               {
                 "operator": "equal",
                 "term1": "name",
-                "term2": "oi"
+                "term2": "thor"
               },
               {
                 "operator": "equal",
                 "term1": "name",
-                "term2": "x"
-              },
-              {
-                "operator": "equal",
-                "term1": "name",
-                "term2": "sa"
+                "term2": "bobby"
               }
             ]
           },
@@ -494,6 +498,72 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [
+          "fileId"
+        ],
+        "properties": {
+          "fileId": {
+            "type": "string"
+          },
+          "options": {
+            "type": "array",
+            "items": {
+              "enum": [
+                "picture",
+                "download"
+              ]
+            }
+          },
+          "noHeaders": {
+            "type": "boolean"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    404,
+                    416
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND",
+                    "RANGE_NOT_SATISFIABLE"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": true
+        }
       ]
     }
   },
@@ -642,10 +712,8 @@ declare type MirrorRouter = {
             "mask": "(##) #####-####"
           },
           "picture_file": {
-            "$ref": "file",
-            "accept": [
-              "image/*"
-            ]
+            "type": "string",
+            "format": "objectid"
           },
           "picture": {},
           "self_registered": {
@@ -727,6 +795,151 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "email": {
+            "type": "string"
+          },
+          "password": {
+            "type": "string"
+          },
+          "revalidate": {
+            "type": "boolean"
+          },
+          "token": {
+            "type": "object",
+            "properties": {
+              "type": {
+                "enum": [
+                  "bearer"
+                ]
+              },
+              "content": {
+                "type": "string"
+              }
+            }
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    401
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "AUTHORIZATION_ERROR",
+                    "INVALID_CREDENTIALS",
+                    "INACTIVE_USER"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "$ref": "user"
+                },
+                "token": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "enum": [
+                        "bearer"
+                      ]
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "_id": {
+                      "const": null
+                    },
+                    "name": {
+                      "type": "string"
+                    },
+                    "email": {
+                      "type": "string"
+                    },
+                    "roles": {
+                      "type": "array",
+                      "items": {
+                        "type": "string"
+                      }
+                    },
+                    "active": {
+                      "type": "boolean"
+                    }
+                  }
+                },
+                "token": {
+                  "type": "object",
+                  "properties": {
+                    "type": {
+                      "type": "string"
+                    },
+                    "content": {
+                      "type": "string"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -735,6 +948,84 @@ declare type MirrorRouter = {
       "roles": [
         "unauthenticated",
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "password": {
+            "type": "string"
+          },
+          "userId": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    404,
+                    403,
+                    401,
+                    422
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND",
+                    "MALFORMED_INPUT",
+                    "ALREADY_ACTIVE_USER",
+                    "INVALID_LINK",
+                    "INVALID_TOKEN",
+                    "USER_NOT_FOUND"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "format": "objectid"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -742,6 +1033,160 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [],
+        "additionalProperties": true,
+        "properties": {
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "given_name": {},
+          "family_name": {},
+          "active": {
+            "type": "boolean"
+          },
+          "roles": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "uniqueItems": true,
+            "minItems": 1
+          },
+          "email": {
+            "type": "string",
+            "inputType": "email",
+            "minLength": 3
+          },
+          "password": {
+            "type": "string",
+            "inputType": "password",
+            "hidden": true
+          },
+          "phone_number": {
+            "type": "string",
+            "mask": "(##) #####-####"
+          },
+          "picture_file": {
+            "$ref": "file",
+            "accept": [
+              "image/*"
+            ]
+          },
+          "picture": {},
+          "self_registered": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403,
+                    404,
+                    422,
+                    400,
+                    500
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "INSECURE_OPERATOR",
+                    "OWNERSHIP_ERROR",
+                    "RESOURCE_NOT_FOUND",
+                    "TARGET_IMMUTABLE",
+                    "MALFORMED_INPUT",
+                    "UNIQUENESS_VIOLATED",
+                    "EMPTY_TARGET",
+                    "INVALID_PROPERTIES",
+                    "MISSING_PROPERTIES",
+                    "INVALID_DOCUMENT_ID",
+                    "INVALID_TEMPFILE"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403,
+                    422
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "MALFORMED_INPUT",
+                    "OWNERSHIP_ERROR",
+                    "SIGNUP_DISALLOWED"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "$ref": "user"
+            }
+          }
+        }
       ]
     }
   },
@@ -749,6 +1194,86 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "userId": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    404,
+                    401,
+                    422
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "INVALID_LINK",
+                    "INVALID_TOKEN",
+                    "USER_NOT_FOUND"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "required": [
+                "name",
+                "email"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -769,6 +1294,38 @@ declare type MirrorRouter = {
               "$ref": "user"
             }
           }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "_id": {
+                  "const": null
+                },
+                "name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "roles": {
+                  "type": "array",
+                  "items": {
+                    "type": "string"
+                  }
+                },
+                "active": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
         }
       ]
     }
@@ -777,6 +1334,117 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [
+          "userId"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "redirect": {
+            "type": "string"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403,
+                    404,
+                    400
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND",
+                    "OWNERSHIP_ERROR",
+                    "INSECURE_OPERATOR",
+                    "MALFORMED_INPUT"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    400,
+                    403
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "INVALID_LINK",
+                    "ALREADY_ACTIVE_USER"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -784,6 +1452,115 @@ declare type MirrorRouter = {
     "POST": {
       "roles": [
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [
+          "userId"
+        ],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "redirect": {
+            "type": "string"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403,
+                    404,
+                    400
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND",
+                    "OWNERSHIP_ERROR",
+                    "INSECURE_OPERATOR",
+                    "MALFORMED_INPUT"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "USER_NOT_ACTIVE"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "url": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
@@ -792,16 +1569,139 @@ declare type MirrorRouter = {
       "roles": [
         "unauthenticated",
         "root"
+      ],
+      "payload": {
+        "type": "object",
+        "required": [],
+        "properties": {
+          "userId": {
+            "type": "string",
+            "format": "objectid"
+          },
+          "password": {
+            "type": "string"
+          },
+          "token": {
+            "type": "string"
+          }
+        }
+      },
+      "response": [
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    403,
+                    404,
+                    400
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "RESOURCE_NOT_FOUND",
+                    "OWNERSHIP_ERROR",
+                    "INSECURE_OPERATOR",
+                    "MALFORMED_INPUT"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Error"
+            },
+            "result": {},
+            "error": {
+              "type": "object",
+              "required": [
+                "httpStatus",
+                "code"
+              ],
+              "properties": {
+                "httpStatus": {
+                  "enum": [
+                    404,
+                    403,
+                    401,
+                    422
+                  ]
+                },
+                "code": {
+                  "enum": [
+                    "MALFORMED_INPUT",
+                    "INVALID_LINK",
+                    "INVALID_TOKEN",
+                    "USER_NOT_FOUND",
+                    "USER_NOT_ACTIVE"
+                  ]
+                },
+                "message": {
+                  "type": "string"
+                },
+                "details": {
+                  "type": "object",
+                  "additionalProperties": true
+                }
+              }
+            }
+          }
+        },
+        {
+          "type": "object",
+          "properties": {
+            "_tag": {
+              "const": "Result"
+            },
+            "error": {},
+            "result": {
+              "type": "object",
+              "properties": {
+                "userId": {
+                  "type": "string",
+                  "format": "objectid"
+                }
+              }
+            }
+          }
+        }
       ]
     }
   },
   "/user/getBySlug": {
     "GET": {
-      "payload": {
+      "query": {
         "type": "object",
         "properties": {
           "slug": {
-            "type": "string"
+            "$ref": "user",
+            "constraints": {
+              "operator": "in",
+              "term1": "roles",
+              "term2": "root"
+            }
           }
         }
       },

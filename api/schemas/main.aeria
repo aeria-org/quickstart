@@ -16,13 +16,17 @@ collection Pet {
   }
   required {
     name @if(age > 10)
-    breed @if((name == "oi" && name == "x" && name == "sa"))
+    breed @if(name == "thor" || name == "bobby")
     age
+  }
+  filters {
+    name
   }
   properties {
     name str
     age num
     breed str
+    root_user User @constraints(roles in ["root"])
     pic File @accept(["image/*"])
   }
   functions {
@@ -41,7 +45,7 @@ collection Pet {
         span 3
       }
       breed {
-        if (name == "oi" && name == "x" && name == "sa")
+        if (name == "thor" || name == "bobby")
         span 3
       }
     }
@@ -63,9 +67,9 @@ collection Pet {
 }
 
 contract GetUserBySlug {
-  payload {
+  query {
     properties {
-      slug str
+      slug User @constraints(roles in "root")
     }
   }
   response
