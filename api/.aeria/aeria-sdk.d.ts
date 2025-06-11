@@ -3,7 +3,6 @@ import type {
   InferProperties,
   SchemaWithId,
   PackReferences,
-  MakeEndpoint,
   RequestMethod,
   CollectionFunctionsSDK
 
@@ -47,9 +46,11 @@ declare type MirrorDescriptions = {
         "type": "boolean"
       },
       "link": {
+        "type": "getter",
         "readOnly": true
       },
       "download_link": {
+        "type": "getter",
         "readOnly": true
       },
       "owner": {
@@ -217,6 +218,31 @@ declare type MirrorDescriptions = {
       }
     }
   },
+  "teste": {
+    "$id": "teste",
+    "properties": {
+      "u": {
+        "$ref": "user",
+        "indexes": [
+          "name"
+        ]
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    }
+  },
   "user": {
     "$id": "user",
     "icon": "users",
@@ -245,9 +271,11 @@ declare type MirrorDescriptions = {
         "minLength": 1
       },
       "given_name": {
+        "type": "getter",
         "readOnly": true
       },
       "family_name": {
+        "type": "getter",
         "readOnly": true
       },
       "active": {
@@ -293,6 +321,7 @@ declare type MirrorDescriptions = {
         ]
       },
       "picture": {
+        "type": "getter",
         "readOnly": true
       },
       "self_registered": {
@@ -416,7 +445,7 @@ declare type MirrorDescriptions = {
 }
 
 
-declare type MirrorRouter = {
+declare type MirrorApiSchema = {
   "/file/get": {
     "POST": {
       "roles": [
@@ -468,7 +497,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -515,46 +546,6 @@ declare type MirrorRouter = {
     }
   },
   "/file/removeAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/get": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/getAll": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/insert": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/remove": {
-    "POST": {
-      "roles": [
-        "root"
-      ],
-      "builtin": true
-    }
-  },
-  "/pet/upload": {
     "POST": {
       "roles": [
         "root"
@@ -623,8 +614,12 @@ declare type MirrorRouter = {
             "type": "string",
             "minLength": 1
           },
-          "given_name": {},
-          "family_name": {},
+          "given_name": {
+            "type": "getter"
+          },
+          "family_name": {
+            "type": "getter"
+          },
           "active": {
             "type": "boolean"
           },
@@ -654,7 +649,9 @@ declare type MirrorRouter = {
             "type": "string",
             "format": "objectid"
           },
-          "picture": {},
+          "picture": {
+            "type": "getter"
+          },
           "self_registered": {
             "type": "boolean",
             "readOnly": true
@@ -672,7 +669,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -721,7 +720,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "$ref": "user"
             }
@@ -770,7 +771,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -807,7 +810,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -837,7 +842,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -910,7 +917,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -953,7 +962,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -982,8 +993,12 @@ declare type MirrorRouter = {
             "type": "string",
             "minLength": 1
           },
-          "given_name": {},
-          "family_name": {},
+          "given_name": {
+            "type": "getter"
+          },
+          "family_name": {
+            "type": "getter"
+          },
           "active": {
             "type": "boolean"
           },
@@ -1015,7 +1030,9 @@ declare type MirrorRouter = {
               "image/*"
             ]
           },
-          "picture": {},
+          "picture": {
+            "type": "getter"
+          },
           "self_registered": {
             "type": "boolean",
             "readOnly": true
@@ -1033,7 +1050,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1082,7 +1101,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1120,7 +1141,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "$ref": "user"
             }
@@ -1153,7 +1176,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1192,7 +1217,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "required": [
@@ -1228,7 +1255,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "$ref": "user"
             }
@@ -1240,7 +1269,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -1296,7 +1327,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1336,7 +1369,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1373,7 +1408,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -1414,7 +1451,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1454,7 +1493,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1489,7 +1530,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -1532,7 +1575,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1572,7 +1617,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Error"
             },
-            "result": {},
+            "result": {
+              "isConstUndefined": true
+            },
             "error": {
               "type": "object",
               "required": [
@@ -1614,7 +1661,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "type": "object",
               "properties": {
@@ -1646,7 +1695,9 @@ declare type MirrorRouter = {
             "_tag": {
               "const": "Result"
             },
-            "error": {},
+            "error": {
+              "isConstUndefined": true
+            },
             "result": {
               "$ref": "user"
             }
@@ -1673,7 +1724,9 @@ declare type MirrorRouter = {
                 }
               }
             },
-            "result": {}
+            "result": {
+              "isConstUndefined": true
+            }
           }
         }
       ],
@@ -1695,36 +1748,36 @@ declare global {
 }
 
 declare module 'aeria-sdk' {
-  import { TopLevelObject } from 'aeria-sdk'
+  import { AeriaInstance, MakeEndpoint, ApiSchema } from 'aeria-sdk'
 
   type UnionToIntersection<T> = (T extends unknown ? ((x: T) => 0) : never) extends ((x: infer R) => 0)
     ? R
     : never
 
-  type InferEndpoint<Route extends keyof MirrorRouter> = {
-    [Method in keyof MirrorRouter[Route]]: Method extends RequestMethod
-      ? MirrorRouter[Route][Method] extends infer Contract
+  type InferEndpoints<TApiSchema extends ApiSchema, TRoute extends keyof TApiSchema & string> = {
+    [Method in keyof TApiSchema[TRoute]]: Method extends RequestMethod
+      ? TApiSchema[TRoute][Method] extends infer Contract
         ? Contract extends
         | { response: infer RouteResponse }
         | { payload: infer RoutePayload  }
         | { query: infer RoutePayload  }
           ? MakeEndpoint<
-            Route,
+            TRoute,
             Method,
             InferProperties<RouteResponse>,
             RoutePayload extends {}
               ? PackReferences<InferProperty<RoutePayload>>
               : undefined
           >
-          : MakeEndpoint<Route, Method>
+          : MakeEndpoint<TRoute, Method>
         : never
       : never
     } extends infer Methods
       ? Methods[keyof Methods]
       : never
 
-  type Endpoints = {
-    [Route in keyof MirrorRouter]: Route extends `/${infer Coll}/${infer Fn}`
+  export type Api = {
+    [Route in keyof MirrorApiSchema]: Route extends `/${infer Coll}/${infer Fn}`
       ? Coll extends keyof Collections
         ? Fn extends keyof CollectionFunctionsSDK
           ? Record<Coll, Record<
@@ -1732,18 +1785,23 @@ declare module 'aeria-sdk' {
               POST: CollectionFunctionsSDK<MirrorDescriptions[Coll]>[Fn]
             }
             >>
-          : InferEndpoint<Route>
-        : InferEndpoint<Route>
-      : InferEndpoint<Route>
-  } extends infer Endpoints
-    ? UnionToIntersection<Endpoints[keyof Endpoints]>
+          : InferEndpoints<MirrorApiSchema, Route>
+        : InferEndpoints<MirrorApiSchema, Route>
+      : InferEndpoints<MirrorApiSchema, Route>
+  } extends infer Api
+    ? UnionToIntersection<Api[keyof Api]>
     : never
 
   type TopLevelAeria = 
-    & ((bearerToken?: string) => TopLevelObject & Endpoints)
-    & TopLevelObject & Endpoints
+    & ((bearerToken?: string) => AeriaInstance & Api)
+    & AeriaInstance & Api
 
   const topLevelAeria: TopLevelAeria
+
+  export {
+    MirrorDescriptions,
+    MirrorApiSchema,
+  }
 
   export const url: string
   export const aeria: TopLevelAeria
