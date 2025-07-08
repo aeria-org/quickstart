@@ -30,7 +30,7 @@
   "license": "ISC",
   "dependencies": {
     "aeria": "^0.0.325",
-    "aeria-sdk": "^0.0.210"
+    "aeria-sdk": "^0.0.211"
   },
   "devDependencies": {
     "@types/node": "^24.0.0"
