@@ -8,7 +8,6 @@ COPY static static
 
 COPY \
   index.html \
-  postcss.config.js \
   package.json \
   package-lock.json \
   tsconfig.json \
