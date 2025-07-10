@@ -7,8 +7,7 @@
   },
   "devDependencies": {
     "dualist": "^0.0.5",
-    "typescript": "^5.7.2",
-    "vue-tsc": "^2.1.10"
+    "typescript": "^5.7.2"
   },
   "workspaces": [
     "api",
