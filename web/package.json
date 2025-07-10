@@ -3,8 +3,8 @@
   "type": "module",
   "scripts": {
     "dev": "aeria-ui -m serve",
-    "build:ci": "vue-tsc --noEmit && aeria-ui -m build",
-    "build": "aeria-ui -m build"
+    "build": "aeria-ui -m build",
+    "build:ci": "vue-tsc --noEmit && aeria-ui -m build"
   },
   "dependencies": {
     "@aeria-ui/i18n-en": "^0.0.3",
