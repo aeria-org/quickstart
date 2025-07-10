@@ -1,15 +1,10 @@
 {
   "name": "quickstart",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
   "scripts": {
     "postinstall": "node scripts/postinstall.js",
     "dev": "dualist api web"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "devDependencies": {
     "dualist": "^0.0.5",
     "typescript": "^5.7.2",

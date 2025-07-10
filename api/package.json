@@ -1,8 +1,6 @@
 {
   "name": "api",
   "type": "module",
-  "version": "1.0.0",
-  "description": "",
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
@@ -25,12 +23,9 @@
       "../web/.aeria-ui"
     ]
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "aeria": "^0.0.325",
-    "aeria-sdk": "^0.0.210"
+    "aeria": "^0.0.330",
+    "aeria-sdk": "^0.0.213"
   },
   "devDependencies": {
     "@types/node": "^24.0.0"

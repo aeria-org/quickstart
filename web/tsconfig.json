@@ -7,7 +7,6 @@
     "strict": true,
     "skipLibCheck": true,
     "esModuleInterop": true,
-    "preserveSymlinks": true,
     "types": [
       "@aeria-ui/ui/vue",
       "unplugin-vue-router/client"

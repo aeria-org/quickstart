@@ -218,31 +218,6 @@ declare type MirrorDescriptions = {
       }
     }
   },
-  "teste": {
-    "$id": "teste",
-    "properties": {
-      "u": {
-        "$ref": "user",
-        "indexes": [
-          "name"
-        ]
-      },
-      "created_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      },
-      "updated_at": {
-        "type": "string",
-        "format": "date-time",
-        "noForm": true,
-        "readOnly": true,
-        "isTimestamp": true
-      }
-    }
-  },
   "user": {
     "$id": "user",
     "icon": "users",
@@ -449,7 +424,8 @@ declare type MirrorApiSchema = {
   "/file/get": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -457,7 +433,8 @@ declare type MirrorApiSchema = {
   "/file/insert": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -465,7 +442,8 @@ declare type MirrorApiSchema = {
   "/file/download": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "payload": {
         "type": "object",
@@ -540,7 +518,8 @@ declare type MirrorApiSchema = {
   "/file/remove": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -548,7 +527,53 @@ declare type MirrorApiSchema = {
   "/file/removeAll": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/get": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/getAll": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/insert": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/remove": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/pet/upload": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -556,7 +581,8 @@ declare type MirrorApiSchema = {
   "/user/get": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -580,7 +606,8 @@ declare type MirrorApiSchema = {
   "/user/upload": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -588,7 +615,8 @@ declare type MirrorApiSchema = {
   "/user/removeFile": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "builtin": true
     }
@@ -604,7 +632,8 @@ declare type MirrorApiSchema = {
   "/user/editProfile": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "payload": {
         "type": "object",
@@ -734,7 +763,8 @@ declare type MirrorApiSchema = {
   "/user/authenticate": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "payload": {
         "type": "object",
@@ -982,7 +1012,8 @@ declare type MirrorApiSchema = {
   "/user/createAccount": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "payload": {
         "type": "object",
@@ -1155,7 +1186,8 @@ declare type MirrorApiSchema = {
   "/user/getInfo": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "payload": {
         "type": "object",
@@ -1246,7 +1278,8 @@ declare type MirrorApiSchema = {
   "/user/getCurrentUser": {
     "POST": {
       "roles": [
-        "root"
+        "root",
+        "customer"
       ],
       "response": [
         {
@@ -1742,7 +1775,7 @@ declare type MirrorApiSchema = {
 declare global {
   type Collections = {
     [K in keyof MirrorDescriptions]: {
-      item: SchemaWithId<MirrorDescriptions[K]>
+      item: SchemaWithId<MirrorDescriptions[K], { useObjectIds: false }>
     }
   }
 }
@@ -1764,9 +1797,9 @@ declare module 'aeria-sdk' {
           ? MakeEndpoint<
             TRoute,
             Method,
-            InferProperties<RouteResponse>,
+            InferProperties<RouteResponse, { useObjectIds: false }>,
             RoutePayload extends {}
-              ? PackReferences<InferProperty<RoutePayload>>
+              ? PackReferences<InferProperty<RoutePayload, { useObjectIds: false }>>
               : undefined
           >
           : MakeEndpoint<TRoute, Method>
