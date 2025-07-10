@@ -28,6 +28,6 @@
     "aeria-sdk": "^0.0.213"
   },
   "devDependencies": {
-    "@types/node": "^24.0.0"
+    "@types/node": "^24.0.12"
   }
 }
