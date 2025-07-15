@@ -4,6 +4,7 @@
   "main": "dist/index.js",
   "types": "src/index.ts",
   "scripts": {
+    "update": "npm install aeria@latest aeria-sdk@latest",
     "build": "aeria -c",
     "build:icons": "aeria -i",
     "build:post": "aeria -mik",
