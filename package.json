@@ -2,7 +2,7 @@
   "name": "quickstart",
   "type": "module",
   "scripts": {
-    "update": "npm --workspaces run update",
+    "update": "npm --workspaces run update && npm run postinstall",
     "postinstall": "node scripts/postinstall.js",
     "dev": "dualist api web"
   },
