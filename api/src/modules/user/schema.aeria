@@ -1,0 +1,9 @@
+collection User extends aeria.user {
+  properties {
+    roles [..1]enum @values([
+      "root",
+      "customer",
+    ])
+  }
+}
+
