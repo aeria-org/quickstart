@@ -2,6 +2,7 @@ declare global {
   namespace NodeJS {
     interface ProcessEnv extends Record<
       | 'API_URL'
+      | 'WEB_PUBLIC_URL'
       | 'APPLICATION_SECRET'
       | 'MONGODB_URL'
       | 'GODMODE_USERNAME'
