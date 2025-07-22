@@ -1,5 +1,5 @@
 import { useApp } from 'aeria-ui'
-import aeriaEn from '@aeria-ui/i18n-en'
+import { en as aeriaEn } from '@aeria-ui/i18n-en'
 import { en } from './i18n/index.js'
 import { routes } from './routes.js'
 import Main from './main.vue'

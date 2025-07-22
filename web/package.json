@@ -8,7 +8,7 @@
     "build:ci": "vue-tsc --noEmit && aeria-ui -m build"
   },
   "dependencies": {
-    "@aeria-ui/i18n-en": "^0.0.3",
+    "@aeria-ui/i18n-en": "^0.0.5",
     "aeria-app-layout": "^0.0.56",
     "aeria-sdk": "^0.0.213",
     "aeria-ui": "^0.0.184"
