@@ -1,3 +1,9 @@
 @import 'tailwindcss';
 @custom-variant dark (&:where(.dark, .dark *));
 
+@theme {
+  --color-aeria-border: var(--theme-border-color);
+  --color-aeria-foreground: var(--theme-foreground);
+  --color-aeria-background: var(--theme-background-color);
+}
+
