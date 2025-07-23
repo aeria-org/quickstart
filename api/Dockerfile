@@ -14,7 +14,7 @@ COPY \
 RUN npm ci
 RUN npm run build
 
-CMD find && npm run build:post \
+CMD npm run build:post \
   && rm -rf ../api-build/node_modules \
   && cp -r node_modules ../api-build \
   && npm start
