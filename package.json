@@ -7,7 +7,7 @@
     "dev": "dualist api web"
   },
   "devDependencies": {
-    "dualist": "^0.0.5",
+    "dualist": "^0.0.6",
     "typescript": "^5.7.2"
   },
   "workspaces": [
