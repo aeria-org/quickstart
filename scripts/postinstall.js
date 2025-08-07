@@ -36,7 +36,11 @@ const main = async () => {
     }
   }
 
-  for( const cwd of [API_PATH, WEB_PATH] ) {
+  const { workspaces } = JSON.parse(await fs.promises.readFile('package.json', {
+    encoding: 'utf-8',
+  }))
+
+  for( const cwd of workspaces ) {
     await exec('npm i --package-lock-only --workspaces false', {
       cwd,
     })
