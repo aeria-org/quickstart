@@ -14,7 +14,7 @@
   },
   "include": [
     "@types/*.d.ts",
-    "src",
-    ".aeria-ui/*.d.ts"
+    ".aeria-ui/*.d.ts",
+    "src"
   ]
 }
