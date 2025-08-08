@@ -37,6 +37,7 @@ services:
       context: nginx
     restart: always
     depends_on:
+      - api
       - web
     ports:
       - 80:80
