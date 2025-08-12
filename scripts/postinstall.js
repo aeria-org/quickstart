@@ -41,7 +41,7 @@ const main = async () => {
   }))
 
   for( const cwd of workspaces ) {
-    await exec('npm i --package-lock-only --workspaces false', {
+    await exec('npm install -f --package-lock-only --workspaces false', {
       cwd,
     })
   }

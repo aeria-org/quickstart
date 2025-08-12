@@ -2,7 +2,7 @@
   "name": "web",
   "type": "module",
   "scripts": {
-    "update": "npm install aeria-app-layout@latest aeria-sdk@latest aeria-ui@latest",
+    "update": "npm install -f aeria-app-layout@latest aeria-sdk@latest aeria-ui@latest",
     "dev": "aeria-ui -m serve",
     "build": "aeria-ui -m build",
     "build:ci": "vue-tsc --noEmit && aeria-ui -m build"
