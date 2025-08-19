@@ -6,8 +6,8 @@ services:
       - /data/db:/data/db
     logging:
       options:
-        max-size: '1G'
-        max-size: '4'
+        max-size: '10M'
+        max-size: '2'
 
   api:
     build:
