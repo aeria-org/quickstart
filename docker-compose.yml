@@ -7,7 +7,7 @@ services:
     logging:
       options:
         max-size: '10m'
-        max-size: '2'
+        max-file: '2'
 
   api:
     build:
@@ -48,7 +48,7 @@ services:
     logging:
       options:
         max-size: '2G'
-        max-size: '4'
+        max-file: '4'
 
 volumes:
   api-build:
