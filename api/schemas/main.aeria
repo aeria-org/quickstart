@@ -1,5 +1,5 @@
 collection File extends aeria.file {}
 collection TempFile extends aeria.tempFile {}
 collection Log extends aeria.log {}
-collection ResourceUsage extends aeria.ResourceUsage {}
+collection ResourceUsage extends aeria.resourceUsage {}
 
