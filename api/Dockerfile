@@ -11,7 +11,7 @@ COPY \
   tsconfig.json \
   .
 
-RUN npm ci
+RUN npm ci -f
 RUN npm run build
 
 CMD npm run build:post \

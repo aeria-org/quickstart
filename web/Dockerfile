@@ -13,7 +13,7 @@ COPY \
   tsconfig.json \
   .
 
-RUN npm ci
+RUN npm ci -f
 CMD cp ../api/node_modules/aeria-sdk/dist/runtime.* node_modules/aeria-sdk/dist || true \
   && cp ../api/.aeria/aeria-sdk.d.ts .aeria-ui || true \
   && npm run build \
