@@ -11,7 +11,7 @@ services:
 
   api:
     build:
-      context: api
+      dockerfile: Dockerfile.api
     restart: always
     env_file: api/production.env
     depends_on:
@@ -26,7 +26,7 @@ services:
 
   web:
     build:
-      context: web
+      dockerfile: Dockerfile.web
     depends_on:
       api:
         condition: service_healthy

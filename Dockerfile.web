@@ -1,19 +1,11 @@
 FROM node:22
+
+WORKDIR /opt/application
+COPY web web
+
 WORKDIR /opt/application/web
-
-COPY .aeria-ui .aeria-ui
-COPY @types @types
-COPY src src
-COPY static static
-
-COPY \
-  index.html \
-  package.json \
-  package-lock.json \
-  tsconfig.json \
-  .
-
 RUN npm ci -f
+
 CMD cp ../api/node_modules/aeria-sdk/dist/runtime.* node_modules/aeria-sdk/dist || true \
   && cp ../api/.aeria/aeria-sdk.d.ts .aeria-ui || true \
   && npm run build \
