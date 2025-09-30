@@ -13,7 +13,8 @@
   },
   "aeriaSdk": {
     "publicUrl": {
-      "development": "http://localhost:3000/api"
+      "development": "http://localhost:3000/api",
+      "production": "https://consagradosdemaria.org/api"
     },
     "storage": {
       "strategy": "localStorage",
