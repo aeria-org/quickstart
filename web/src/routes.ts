@@ -7,12 +7,6 @@ import DashboardLayout from './pages/dashboard.vue'
 export const routes = ([] as RouteRecordRaw[]).concat(
   userRoutes(AuthWall),
   dashboardRoutes(DashboardLayout),
-  [
-    {
-      path: '/',
-      redirect: '/user/signin',
-    },
-  ],
   autoRoutes,
 )
 
