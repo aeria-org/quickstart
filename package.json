@@ -3,7 +3,7 @@
   "type": "module",
   "scripts": {
     "update": "npm --workspaces run update && npm run postinstall",
-    "postinstall": "node scripts/postinstall.js",
+    "postinstall": "node scripts/postinstall.ts",
     "dev": "dualist api web"
   },
   "devDependencies": {
