@@ -3,7 +3,7 @@
 
 @theme {
   --color-aeria-border: var(--theme-border-color);
-  --color-aeria-foreground: var(--theme-foreground);
+  --color-aeria-foreground: var(--theme-foreground-color);
   --color-aeria-background: var(--theme-background-color);
 }
 
