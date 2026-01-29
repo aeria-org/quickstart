@@ -9,6 +9,11 @@ export default init({
     publicUrl: process.env.API_URL,
     webPublicUrl: process.env.WEB_PUBLIC_URL,
     secret: process.env.APPLICATION_SECRET,
+    security: {
+      rolesHierarchy: {
+        root: true,
+      },
+    },
     database: {
       mongodbUrl: process.env.MONGODB_URL,
     },

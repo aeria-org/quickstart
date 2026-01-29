@@ -90,6 +90,126 @@ declare type MirrorDescriptions = {
       }
     }
   },
+  "log": {
+    "$id": "log",
+    "icon": "magnifying-glass",
+    "required": [
+      "context",
+      "message"
+    ],
+    "table": [
+      "owner",
+      "context",
+      "message",
+      "created_at"
+    ],
+    "properties": {
+      "owner": {
+        "$ref": "user",
+        "noForm": true,
+        "indexes": [
+          "name"
+        ]
+      },
+      "context": {
+        "type": "string"
+      },
+      "message": {
+        "type": "string"
+      },
+      "details": {
+        "type": "object",
+        "additionalProperties": true
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    },
+    "presets": [
+      "view"
+    ],
+    "filters": [
+      "context",
+      "message",
+      "owner"
+    ],
+    "individualActions": {
+      "viewItem": {
+        "label": "action.view",
+        "icon": "eye",
+        "translate": true,
+        "route": {
+          "name": "/dashboard/:collection/:id",
+          "setItem": true
+        }
+      }
+    }
+  },
+  "resourceUsage": {
+    "$id": "resourceUsage",
+    "icon": "wrench",
+    "required": [
+      "usage"
+    ],
+    "properties": {
+      "user": {
+        "$ref": "user",
+        "indexes": [
+          "name"
+        ]
+      },
+      "address": {
+        "type": "string"
+      },
+      "usage": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "properties": {
+            "hits": {
+              "type": "integer"
+            },
+            "points": {
+              "type": "integer"
+            },
+            "last_reach": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "last_maximum_reach": {
+              "type": "string",
+              "format": "date-time"
+            }
+          }
+        }
+      },
+      "created_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      },
+      "updated_at": {
+        "type": "string",
+        "format": "date-time",
+        "noForm": true,
+        "readOnly": true,
+        "isTimestamp": true
+      }
+    }
+  },
   "tempFile": {
     "$id": "tempFile",
     "icon": "file",
@@ -437,6 +557,33 @@ declare type MirrorApiSchema = {
     }
   },
   "/file/removeAll": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/log/get": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/log/getAll": {
+    "POST": {
+      "roles": [
+        "root",
+        "customer"
+      ],
+      "builtin": true
+    }
+  },
+  "/log/insert": {
     "POST": {
       "roles": [
         "root",

@@ -7,5 +7,5 @@
     "@types/*.d.ts",
     ".aeria/aeria.d.ts",
     "src"
-    ]
+  ]
 }
