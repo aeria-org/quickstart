@@ -11,7 +11,7 @@
     "@aeria-ui/i18n-en": "^0.0.5",
     "aeria-app-layout": "^0.0.78",
     "aeria-sdk": "^0.0.219",
-    "aeria-ui": "^0.0.204"
+    "aeria-ui": "^0.0.206"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
