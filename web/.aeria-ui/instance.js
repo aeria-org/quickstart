@@ -27,11 +27,6 @@ export default {
         dts: './.aeria-ui/typed-router.d.ts'
       }),
     ],
-    resolve: {
-      dedupe: [
-        'vue-router',
-      ],
-    },
   },
 }
 
