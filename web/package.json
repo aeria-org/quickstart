@@ -15,7 +15,7 @@
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.18",
-    "tailwindcss": "^4.1.18",
+    "tailwindcss": "^4.2.0",
     "unplugin-vue-router": "^0.19.2",
     "vue-tsc": "^3.2.4"
   }
