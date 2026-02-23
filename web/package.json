@@ -17,6 +17,6 @@
     "@tailwindcss/vite": "^4.2.0",
     "tailwindcss": "^4.2.1",
     "unplugin-vue-router": "^0.19.2",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.2.5"
   }
 }
