@@ -30,7 +30,7 @@
     "aeria-sdk": "^0.0.222"
   },
   "devDependencies": {
-    "@types/node": "^25.5.2",
+    "@types/node": "^25.6.0",
     "typescript": "^5.9.3"
   }
 }
