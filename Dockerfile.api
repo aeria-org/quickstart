@@ -6,7 +6,7 @@ COPY \
   api/package-lock.json \
   api/
 
-WORKDIR /opt/application
+WORKDIR /opt/application/api
 RUN npm ci -f
 
 WORKDIR /opt/application
