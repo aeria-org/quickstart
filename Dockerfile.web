@@ -1,13 +1,22 @@
 FROM node:25
 
 WORKDIR /opt/application
-COPY web web
+COPY \
+  web/package.json \
+  web/package-lock.json \
+  web/
 
 WORKDIR /opt/application/web
 RUN npm ci -f
 
-CMD cp ../api/node_modules/aeria-sdk/dist/runtime.* node_modules/aeria-sdk/dist || true \
-  && cp ../api/.aeria/aeria-sdk.d.ts .aeria-ui || true \
+WORKDIR /opt/application
+COPY web web
+COPY api/src api/src
+
+WORKDIR /opt/application/web
+
+CMD cp ../api-build/node_modules/aeria-sdk/dist/runtime.* node_modules/aeria-sdk/dist || true \
+  && cp ../api-build/.aeria/aeria-sdk.d.ts .aeria-ui || true \
   && npm run build \
   && rm -rf /var/www/html/* \
-  && mv dist/* /var/www/html
+  && mv dist/* /var/www/html \

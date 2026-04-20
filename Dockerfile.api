@@ -1,10 +1,18 @@
 FROM node:25
 
 WORKDIR /opt/application
+COPY \
+  api/package.json \
+  api/package-lock.json \
+  api/
+
+WORKDIR /opt/application
+RUN npm ci -f
+
+WORKDIR /opt/application
 COPY api api
 
 WORKDIR /opt/application/api
-RUN npm ci -f
 RUN npm run build
 
 CMD npm run build:post \
