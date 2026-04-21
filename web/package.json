@@ -14,7 +14,7 @@
     "aeria-ui": "^0.0.224"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.2.3",
+    "@tailwindcss/vite": "^4.2.4",
     "tailwindcss": "^4.2.4",
     "unplugin-vue-router": "^0.19.2",
     "vue-tsc": "^3.2.7"
