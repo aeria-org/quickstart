@@ -9,14 +9,13 @@
   },
   "dependencies": {
     "@aeria-ui/i18n-en": "^0.0.5",
-    "aeria-app-layout": "^0.0.98",
+    "aeria-app-layout": "^0.0.99",
     "aeria-sdk": "^0.0.222",
-    "aeria-ui": "^0.0.225"
+    "aeria-ui": "^0.0.226"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.2.4",
     "tailwindcss": "^4.2.4",
-    "unplugin-vue-router": "^0.19.2",
     "vue-tsc": "^3.2.7"
   }
 }

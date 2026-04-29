@@ -8,8 +8,7 @@
     "skipLibCheck": true,
     "esModuleInterop": true,
     "types": [
-      "@aeria-ui/ui/vue",
-      "unplugin-vue-router/client"
+      "@aeria-ui/ui/vue"
     ]
   },
   "include": [
