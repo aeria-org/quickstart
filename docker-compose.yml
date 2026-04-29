@@ -13,7 +13,7 @@ services:
     build:
       dockerfile: Dockerfile.api
     restart: always
-    env_file: api/production.env
+    env_file: api/.env.production
     depends_on:
       - mongo
     volumes:
