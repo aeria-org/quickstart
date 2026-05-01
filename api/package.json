@@ -27,7 +27,7 @@
   },
   "dependencies": {
     "aeria": "^0.0.353",
-    "aeria-sdk": "^0.0.222"
+    "aeria-sdk": "^0.0.223"
   },
   "devDependencies": {
     "@types/node": "^25.6.0",
