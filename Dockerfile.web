@@ -14,9 +14,10 @@ COPY web web
 COPY api/src api/src
 
 WORKDIR /opt/application/web
+COPY api/.aeria/runtime.js node_modules/aeria-sdk/dist/runtime.js
+RUN npm run build
 
-CMD cp ../api-build/node_modules/aeria-sdk/dist/runtime.* node_modules/aeria-sdk/dist || true \
-  && cp ../api-build/.aeria/aeria-sdk.d.ts .aeria-ui || true \
-  && npm run build \
-  && rm -rf /var/www/html/* \
-  && mv dist/* /var/www/html \
+CMD \
+  rm -rf /var/www/html/* \
+  && mv dist/* /var/www/html
+

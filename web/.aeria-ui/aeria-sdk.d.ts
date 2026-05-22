@@ -342,6 +342,10 @@ declare type MirrorDescriptions = {
         "readOnly": true,
         "isTimestamp": true
       },
+      "activation_timestamp": {
+        "type": "string",
+        "format": "date-time"
+      },
       "created_at": {
         "type": "string",
         "format": "date-time",
@@ -702,6 +706,10 @@ declare type MirrorApiSchema = {
           "updated_at": {
             "type": "string",
             "format": "date-time"
+          },
+          "activation_timestamp": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -973,6 +981,7 @@ declare type MirrorApiSchema = {
               "properties": {
                 "httpStatus": {
                   "enum": [
+                    400,
                     404,
                     403,
                     401,
@@ -1083,6 +1092,10 @@ declare type MirrorApiSchema = {
             "readOnly": true
           },
           "updated_at": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "activation_timestamp": {
             "type": "string",
             "format": "date-time"
           }
@@ -1429,12 +1442,14 @@ declare type MirrorApiSchema = {
                 "httpStatus": {
                   "enum": [
                     400,
-                    403
+                    403,
+                    404
                   ]
                 },
                 "code": {
                   "enum": [
                     "INVALID_LINK",
+                    "USER_NOT_FOUND",
                     "ALREADY_ACTIVE_USER"
                   ]
                 },
@@ -1552,12 +1567,14 @@ declare type MirrorApiSchema = {
               "properties": {
                 "httpStatus": {
                   "enum": [
-                    403
+                    403,
+                    404
                   ]
                 },
                 "code": {
                   "enum": [
-                    "USER_NOT_ACTIVE"
+                    "USER_NOT_ACTIVE",
+                    "USER_NOT_FOUND"
                   ]
                 },
                 "message": {
@@ -1676,6 +1693,7 @@ declare type MirrorApiSchema = {
               "properties": {
                 "httpStatus": {
                   "enum": [
+                    400,
                     404,
                     403,
                     401,
