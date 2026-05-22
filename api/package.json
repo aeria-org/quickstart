@@ -7,7 +7,6 @@
     "update": "npm install -f aeria@latest aeria-sdk@latest",
     "build": "aeria -c",
     "build:icons": "aeria -i",
-    "build:post": "aeria -mik",
     "build:aeria-sdk": "aeria-sdk -r",
     "dev": "aeria -w",
     "start": "node --import aeria/loader ./dist/index.js"
