@@ -19,5 +19,5 @@ RUN npm run build
 
 CMD \
   rm -rf /var/www/html/* \
-  && mv dist/* /var/www/html
+  && cp -r dist/* /var/www/html
 
